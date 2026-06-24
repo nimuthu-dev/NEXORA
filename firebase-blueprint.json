@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "LiveSession": {
+      "title": "Live Session",
+      "description": "Represents an active visitor session on the NEXORA platform.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "lastActive": { "type": "string", "format": "date-time" },
+        "userAgent": { "type": "string" }
+      },
+      "required": ["id", "lastActive"]
+    },
+    "SupportRequest": {
+      "title": "Support Request",
+      "description": "A support ticket or feedback submission from a student.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "subject": { "type": "string" },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "message", "timestamp"]
+    }
+  },
+  "auth": {
+    "providers": ["google.com", "password", "phone"]
+  },
+  "firestore": {
+    "/sessions/{sessionId}": {
+      "schema": "LiveSession",
+      "description": "A collection of active visitor sessions for real-time counting."
+    },
+    "/support/{requestId}": {
+      "schema": "SupportRequest",
+      "description": "Feedback and support requests from users."
+    }
+  }
+}

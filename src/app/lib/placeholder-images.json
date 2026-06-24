@@ -1,0 +1,35 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Abstract futuristic dark background with blue and purple gradients",
+      "imageUrl": "https://picsum.photos/seed/nexora-hero/1200/800",
+      "imageHint": "abstract futuristic"
+    },
+    {
+      "id": "resource-vault",
+      "description": "Organized digital library concept",
+      "imageUrl": "https://picsum.photos/seed/nexora-vault/600/400",
+      "imageHint": "digital library"
+    },
+    {
+      "id": "mock-arena",
+      "description": "Competitive exam hall or digital testing interface",
+      "imageUrl": "https://picsum.photos/seed/nexora-arena/600/400",
+      "imageHint": "digital exam"
+    },
+    {
+      "id": "ai-assistant",
+      "description": "AI glowing orb or futuristic brain concept",
+      "imageUrl": "https://picsum.photos/seed/nexora-ai/600/400",
+      "imageHint": "artificial intelligence"
+    },
+    {
+      "id": "iit-logo",
+      "description": "Informatics Institute of Technology shield logo",
+      "imageUrl": "https://picsum.photos/seed/iit-shield/200/200",
+      "imageHint": "university shield logo"
+    }
+  ]
+}
