@@ -167,8 +167,16 @@ const focusModulesData = [
     type: "Core Module • Y1S1", color: "from-orange-500 to-red-600", iconName: "Binary",
     resources: {
       lec: [
-        { name: "Discrete_Mathematics_Calculus.pdf", size: "8.1 MB", week: 1 },
-        { name: "Maths_Lec02_Set_Theory.pdf", size: "2.3 MB", week: 2 }
+        { name: "MathsComp_Lecture1.pdf", size: "19.0 MB", week: 1 },
+        { name: "MathsComp_Lecture2.pdf", size: "2.8 MB", week: 2 },
+        { name: "MathsComp_Lecture3.pdf", size: "9.6 MB", week: 3 },
+        { name: "MathsComp_Lecture4.pdf", size: "2.7 MB", week: 4 },
+        { name: "MathsComp_Lecture5.pdf", size: "11.0 MB", week: 5 },
+        { name: "MathsComp_Lecture7.pdf", size: "2.9 MB", week: 7 },
+        { name: "MathsComp_Lecture8.pdf", size: "533 KB", week: 8 },
+        { name: "MathsComp_Lecture10.pdf", size: "665 KB", week: 9 },
+        { name: "MathsComp_Lecture09.pdf", size: "2.8 MB", week: 10 },
+        { name: "MathsComp_Lecture11.pdf", size: "2.9 MB", week: 11 }
       ],
       tut: [
         { name: "Maths_Tutorial01_Sets.pdf", size: "1.1 MB", week: 1 },
@@ -348,6 +356,86 @@ const mockPdfStudyData: Record<string, { summary: string; quiz: { question: stri
     qaKeywords: [
       { keywords: ["sqlite3", "connect", "sql"], answer: "Use sqlite3.connect('db_name') to connect and cursor.execute() to run SQL statements." }
     ]
+  },
+  "MathsComp_Lecture1.pdf": {
+    summary: "Intro to Matrices, matrix elements, dimensions, row/column vectors, transpose, and identity matrices.",
+    quiz: [
+      { question: "What is the transpose of a row matrix?", options: ["A column matrix", "A square matrix", "A scalar", "An identity matrix"], answer: 0, explanation: "Transposing a row matrix swaps its single row with a single column, yielding a column matrix." },
+      { question: "What represents an identity matrix?", options: ["All elements are 1", "All elements are 0", "Diagonal elements are 1, others are 0", "Anti-diagonal elements are 1"], answer: 2, explanation: "An identity matrix is a square matrix with 1s on the main diagonal and 0s elsewhere." }
+    ],
+    qaKeywords: [{ keywords: ["matrix", "transpose", "identity"], answer: "Maths Lecture 1 covers matrix definition, transpose operation (swapping rows/columns), and identity matrices." }]
+  },
+  "MathsComp_Lecture2.pdf": {
+    summary: "Matrix multiplication properties, transposing products, symmetric and skew-symmetric matrices.",
+    quiz: [
+      { question: "If A is symmetric, which is true?", options: ["A = -A", "A = A^T", "A is identity", "A is singular"], answer: 1, explanation: "A symmetric matrix is equal to its transpose (A = A^T)." },
+      { question: "Is matrix multiplication generally commutative (AB = BA)?", options: ["Always", "Never", "Generally no", "Only for 2x2 matrices"], answer: 2, explanation: "Matrix multiplication is not generally commutative: AB does not equal BA in most cases." }
+    ],
+    qaKeywords: [{ keywords: ["multiplication", "symmetric", "skew-symmetric"], answer: "Maths Lecture 2 covers matrix multiplication rules, symmetric (A = A^T) and skew-symmetric (A = -A^T) properties." }]
+  },
+  "MathsComp_Lecture3.pdf": {
+    summary: "Determinants, minors, cofactors, adjoints, matrix inversion, and solving systems of equations via Cramer's rule.",
+    quiz: [
+      { question: "Which matrix has no inverse?", options: ["Identity matrix", "Symmetric matrix", "Singular matrix (determinant = 0)", "Orthogonal matrix"], answer: 2, explanation: "A matrix is invertible if and only if its determinant is non-zero. Singular matrices have det = 0, so no inverse." },
+      { question: "Cramer's rule is used for solving?", options: ["Integration", "Systems of linear equations", "Vector products", "Matrix eigenvalues"], answer: 1, explanation: "Cramer's rule is an explicit formula for the solution of a system of linear equations using determinants." }
+    ],
+    qaKeywords: [{ keywords: ["determinant", "inverse", "cramer", "adjoint"], answer: "Maths Lecture 3 covers determinant calculations, finding inverses via adjoints, and Cramer's rule for linear systems." }]
+  },
+  "MathsComp_Lecture4.pdf": {
+    summary: "Vector mathematics, magnitude, unit vectors, scalar (dot) products, and vector (cross) products.",
+    quiz: [
+      { question: "What is the dot product of two perpendicular vectors?", options: ["1", "0", "Product of magnitudes", "Infinity"], answer: 1, explanation: "The dot product of perpendicular vectors is 0, since cos(90°) = 0." },
+      { question: "What does the cross product of two vectors yield?", options: ["A scalar", "A vector perpendicular to both", "A unit vector", "An angle"], answer: 1, explanation: "The cross product yields a vector that is perpendicular to both original vectors." }
+    ],
+    qaKeywords: [{ keywords: ["vector", "dot product", "cross product", "magnitude"], answer: "Maths Lecture 4 covers vectors, vector addition, magnitude calculations, unit vectors, and dot/cross product definitions." }]
+  },
+  "MathsComp_Lecture5.pdf": {
+    summary: "Complex numbers in standard, polar, and exponential forms, arithmetic operations, conjugates, and Euler's formula.",
+    quiz: [
+      { question: "What is the value of i^2?", options: ["1", "-1", "0", "sqrt(-1)"], answer: 1, explanation: "By definition, the imaginary unit i is the square root of -1, so i^2 = -1." },
+      { question: "What is Euler's formula?", options: ["e^(ix) = cos(x) + i sin(x)", "e^(ix) = sin(x) + i cos(x)", "e^x = 1 + x", "a^2 + b^2 = c^2"], answer: 0, explanation: "Euler's formula states that e^(ix) = cos(x) + i sin(x)." }
+    ],
+    qaKeywords: [{ keywords: ["complex number", "conjugate", "euler", "polar form"], answer: "Maths Lecture 5 covers complex number algebra, polar representations, complex conjugates, and Euler's formula." }]
+  },
+  "MathsComp_Lecture7.pdf": {
+    summary: "Arithmetic and geometric progressions, summation of sequences, and infinite geometric series convergence.",
+    quiz: [
+      { question: "Formula for the n-th term of an Arithmetic Progression?", options: ["a + nd", "a + (n-1)d", "a * r^(n-1)", "n/2 * (2a + d)"], answer: 1, explanation: "The n-th term of an AP is given by a + (n-1)d, where a is the first term and d is the common difference." },
+      { question: "When does an infinite geometric series converge?", options: ["|r| > 1", "|r| < 1", "r = 1", "r = -1"], answer: 1, explanation: "An infinite geometric series converges if and only if the absolute value of the common ratio r is less than 1." }
+    ],
+    qaKeywords: [{ keywords: ["progression", "arithmetic", "geometric", "series"], answer: "Maths Lecture 7 covers arithmetic progression (AP), geometric progression (GP), sequence summing, and infinite series convergence limits." }]
+  },
+  "MathsComp_Lecture8.pdf": {
+    summary: "Mathematical functions, domain and range, one-to-one (injective), onto (surjective), composite, and inverse functions.",
+    quiz: [
+      { question: "What is a bijective function?", options: ["One-to-one only", "Onto only", "Both one-to-one and onto", "Neither"], answer: 2, explanation: "A bijection is a function that is both injective (one-to-one) and surjective (onto)." },
+      { question: "What is the composite function of f(x) and g(x)?", options: ["f(x) + g(x)", "f(g(x))", "f(x) * g(x)", "g(f(x))"], answer: 1, explanation: "The composition of f and g is denoted by (f ∘ g)(x) = f(g(x))." }
+    ],
+    qaKeywords: [{ keywords: ["function", "domain", "range", "injective", "surjective", "bijective"], answer: "Maths Lecture 8 covers mathematical functions, domain/range concepts, injectivity, surjectivity, composition, and inverse function parameters." }]
+  },
+  "MathsComp_Lecture10.pdf": {
+    summary: "Calculus limits, left-hand and right-hand limits, limit existence criteria, and algebraic limit evaluation strategies.",
+    quiz: [
+      { question: "When does a limit of f(x) exist at x=a?", options: ["f(a) is defined", "Left limit equals right limit", "Limit is infinity", "f(x) is continuous"], answer: 1, explanation: "A limit exists at x=a if and only if the left-hand limit equals the right-hand limit as x approaches a." },
+      { question: "What is the limit of sin(x)/x as x approaches 0?", options: ["0", "1", "Undefined", "Infinity"], answer: 1, explanation: "The standard trigonometric limit limit_{x -> 0} sin(x)/x is equal to 1." }
+    ],
+    qaKeywords: [{ keywords: ["limit", "calculus", "existence"], answer: "Maths Lecture 10 covers calculus limits, evaluating limits using algebraic techniques, and left/right limits check." }]
+  },
+  "MathsComp_Lecture09.pdf": {
+    summary: "Calculus derivatives, differentiation from first principles, product/quotient rules, and chain rule operations.",
+    quiz: [
+      { question: "What is the derivative of x^n?", options: ["n * x^(n-1)", "x^(n-1)", "n * x^n", "n * x^(n+1)"], answer: 0, explanation: "The power rule states that d/dx(x^n) = n * x^(n-1)." },
+      { question: "Which rule differentiates f(g(x))?", options: ["Product rule", "Quotient rule", "Chain rule", "Power rule"], answer: 2, explanation: "The chain rule is used to differentiate composite functions: d/dx[f(g(x))] = f'(g(x)) * g'(x)." }
+    ],
+    qaKeywords: [{ keywords: ["derivative", "differentiation", "chain rule", "product rule", "quotient rule"], answer: "Maths Lecture 9 covers differential calculus, first principles definition, and standard differentiation rules (product, quotient, chain)." }]
+  },
+  "MathsComp_Lecture11.pdf": {
+    summary: "Integral calculus, indefinite integrals, integration by substitution, integration by parts, and definite integrals.",
+    quiz: [
+      { question: "What is the integral of 1/x?", options: ["ln|x| + C", "x^0 + C", "-1/x^2 + C", "e^x + C"], answer: 0, explanation: "The indefinite integral of 1/x is natural log of absolute value of x plus integration constant (ln|x| + C)." },
+      { question: "Integration by parts is derived from which rule?", options: ["Chain rule", "Product rule of differentiation", "Quotient rule", "Power rule"], answer: 1, explanation: "Integration by parts is the integral counterpart of the product rule for differentiation." }
+    ],
+    qaKeywords: [{ keywords: ["integral", "integration", "parts", "substitution", "definite integral"], answer: "Maths Lecture 11 covers integral calculus, anti-derivatives, integration methods (substitution and integration by parts), and definite integral calculations." }]
   }
 };
 
