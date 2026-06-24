@@ -179,8 +179,21 @@ const focusModulesData = [
         { name: "MathsComp_Lecture11.pdf", size: "2.9 MB", week: 11 }
       ],
       tut: [
-        { name: "Maths_Tutorial01_Sets.pdf", size: "1.1 MB", week: 1 },
-        { name: "Maths_Tutorial02_Relations.pdf", size: "1.3 MB", week: 2 }
+        { name: "SeminarTasks0_MathComp.pdf", size: "1.0 MB", week: 2 },
+        { name: "SeminarTasks1_MathComp.pdf", size: "114 KB", week: 2 },
+        { name: "SeminarTasks2_MathComp.pdf", size: "620 KB", week: 3 },
+        { name: "SeminarTasks3_MathComp.pdf", size: "142 KB", week: 4 },
+        { name: "SeminarTasks4_MathComp.pdf", size: "545 KB", week: 5 },
+        { name: "SeminarTasks7_MathComp.pdf", size: "393 KB", week: 7 },
+        { name: "SeminarTasks7_MathComp_Solutions.docx", size: "1.2 MB", week: 7 },
+        { name: "SeminarTasks8_MathComp.pdf", size: "124 KB", week: 8 },
+        { name: "SeminarTasks9_MathComp_Solutions.docx", size: "41 KB", week: 8 },
+        { name: "SeminarTasks09_MathComp.pdf", size: "111 KB", week: 9 },
+        { name: "SeminarTasks10_MathComp_Solutions.docx", size: "56 KB", week: 10 },
+        { name: "SeminarTasks11_MathComp.pdf", size: "543 KB", week: 11 }
+      ],
+      rev: [
+        { name: "MathComp_MockExamPaper_2024.pdf", size: "474 KB", week: 11 }
       ]
     }
   },
@@ -436,6 +449,97 @@ const mockPdfStudyData: Record<string, { summary: string; quiz: { question: stri
       { question: "Integration by parts is derived from which rule?", options: ["Chain rule", "Product rule of differentiation", "Quotient rule", "Power rule"], answer: 1, explanation: "Integration by parts is the integral counterpart of the product rule for differentiation." }
     ],
     qaKeywords: [{ keywords: ["integral", "integration", "parts", "substitution", "definite integral"], answer: "Maths Lecture 11 covers integral calculus, anti-derivatives, integration methods (substitution and integration by parts), and definite integral calculations." }]
+  },
+  "SeminarTasks0_MathComp.pdf": {
+    summary: "Matrices and systems of linear equations seminar tasks.",
+    quiz: [
+      { question: "What is a system of linear equations with no solution called?", options: ["Consistent", "Inconsistent", "Dependent", "Homogeneous"], answer: 1, explanation: "A system of equations that has no solution is inconsistent." }
+    ],
+    qaKeywords: [{ keywords: ["system", "equations", "linear"], answer: "Seminar Tasks 0 covers representing systems of linear equations using augmented matrices." }]
+  },
+  "SeminarTasks1_MathComp.pdf": {
+    summary: "Matrix multiplication and transpose properties practice exercises.",
+    quiz: [
+      { question: "For matrix multiplication AB to be defined, what must match?", options: ["Rows of A and columns of B", "Columns of A and rows of B", "Dimensions of both matrices", "Determinants of both"], answer: 1, explanation: "AB is defined if the number of columns in A matches the number of rows in B." }
+    ],
+    qaKeywords: [{ keywords: ["multiplication", "transpose"], answer: "Seminar Tasks 1 covers matrix multiplication calculations and properties of transposing matrix sums." }]
+  },
+  "SeminarTasks2_MathComp.pdf": {
+    summary: "Determinants, inverse of a matrix, and Cramer's rule tasks.",
+    quiz: [
+      { question: "How is the determinant of a 2x2 matrix [[a,b],[c,d]] calculated?", options: ["ad + bc", "ad - bc", "ab - cd", "ac - bd"], answer: 1, explanation: "The determinant of a 2x2 matrix is ad - bc." }
+    ],
+    qaKeywords: [{ keywords: ["determinant", "cramer", "inverse"], answer: "Seminar Tasks 2 covers calculating 2x2 and 3x3 determinants, computing inverse matrices, and applying Cramer's rule." }]
+  },
+  "SeminarTasks3_MathComp.pdf": {
+    summary: "Vector representations, dot products, and cross products problems.",
+    quiz: [
+      { question: "What is the dot product of [1, 2] and [3, 4]?", options: ["11", "14", "10", "2"], answer: 0, explanation: "Dot product = 1*3 + 2*4 = 3 + 8 = 11." }
+    ],
+    qaKeywords: [{ keywords: ["vector", "dot", "cross"], answer: "Seminar Tasks 3 covers vector magnitude, direction cosines, dot products, and cross products." }]
+  },
+  "SeminarTasks4_MathComp.pdf": {
+    summary: "Complex numbers standard, polar form, and Euler's formula tasks.",
+    quiz: [
+      { question: "What is the polar form representation of a complex number z?", options: ["r(cos θ + i sin θ)", "r(sin θ + i cos θ)", "r * e^θ", "a + bi"], answer: 0, explanation: "The polar form of z = a + bi is z = r(cos θ + i sin θ), where r is the modulus and θ is the argument." }
+    ],
+    qaKeywords: [{ keywords: ["complex", "polar", "euler"], answer: "Seminar Tasks 4 covers arithmetic of complex numbers, plotting on the Argand diagram, and conversions to polar form." }]
+  },
+  "SeminarTasks7_MathComp.pdf": {
+    summary: "Arithmetic and geometric progression sequences and series exercises.",
+    quiz: [
+      { question: "What is the common ratio of the geometric progression 2, 6, 18, 54...?", options: ["3", "4", "2", "6"], answer: 0, explanation: "The common ratio r is obtained by dividing any term by its preceding term: 6 / 2 = 3." }
+    ],
+    qaKeywords: [{ keywords: ["progression", "arithmetic", "geometric"], answer: "Seminar Tasks 7 covers solving sequence terms and sum limits for arithmetic and geometric progressions." }]
+  },
+  "SeminarTasks7_MathComp_Solutions.docx": {
+    summary: "Detailed solutions for AP and GP progressions tutorial tasks.",
+    quiz: [
+      { question: "What is the sum of an infinite geometric progression with a=10 and r=0.5?", options: ["15", "20", "30", "10"], answer: 1, explanation: "Sum S = a / (1 - r) = 10 / (1 - 0.5) = 10 / 0.5 = 20." }
+    ],
+    qaKeywords: [{ keywords: ["solutions", "progressions", "gp", "ap"], answer: "This document provides step-by-step solutions for arithmetic and geometric progression sums." }]
+  },
+  "SeminarTasks8_MathComp.pdf": {
+    summary: "Functions domain/range, bijective properties, composite, and inverse function exercises.",
+    quiz: [
+      { question: "What is the inverse function of f(x) = 2x + 3?", options: ["(x - 3)/2", "2x - 3", "x/2 - 3", "3x + 2"], answer: 0, explanation: "Solving y = 2x + 3 for x yields x = (y - 3)/2. Thus, the inverse is (x - 3)/2." }
+    ],
+    qaKeywords: [{ keywords: ["function", "inverse", "composite"], answer: "Seminar Tasks 8 covers function mapping classifications, composite function calculations, and proving injectivity." }]
+  },
+  "SeminarTasks9_MathComp_Solutions.docx": {
+    summary: "Detailed solutions for limits, left-hand/right-hand limits calculus questions.",
+    quiz: [
+      { question: "What is the limit of (x^2 - 1)/(x - 1) as x approaches 1?", options: ["1", "2", "0", "Undefined"], answer: 1, explanation: "Factoring the numerator: (x - 1)(x + 1)/(x - 1) = x + 1. The limit as x approaches 1 is 1 + 1 = 2." }
+    ],
+    qaKeywords: [{ keywords: ["solutions", "limits", "calculus"], answer: "This document contains detailed worked solutions for evaluating algebraic and trigonometric limits." }]
+  },
+  "SeminarTasks09_MathComp.pdf": {
+    summary: "Limits evaluation and calculus foundations tutorial sheet.",
+    quiz: [
+      { question: "If the left limit of f(x) as x->a is 5, and the right limit is 6, what is the limit?", options: ["5.5", "5", "6", "Does not exist"], answer: 3, explanation: "A limit exists if and only if the left-hand limit is equal to the right-hand limit." }
+    ],
+    qaKeywords: [{ keywords: ["limits", "calculus", "existence"], answer: "Seminar Tasks 9 covers finding limits algebraically, checking continuity, and graphing boundary limits." }]
+  },
+  "SeminarTasks10_MathComp_Solutions.docx": {
+    summary: "Detailed solutions for derivative rules, chain rule, and first principles calculus questions.",
+    quiz: [
+      { question: "What is the derivative of e^(2x)?", options: ["e^(2x)", "2 * e^(2x)", "2x * e^(2x-1)", "0.5 * e^(2x)"], answer: 1, explanation: "Applying the chain rule: d/dx[e^(2x)] = e^(2x) * d/dx(2x) = 2 * e^(2x)." }
+    ],
+    qaKeywords: [{ keywords: ["solutions", "derivatives", "chain rule"], answer: "This document contains detailed worked solutions for product, quotient, and chain rule differentiation questions." }]
+  },
+  "SeminarTasks11_MathComp.pdf": {
+    summary: "Integral calculus, indefinite/definite integrals, integration by parts and substitution sheet.",
+    quiz: [
+      { question: "What is the integral of cos(x)?", options: ["sin(x) + C", "-sin(x) + C", "cos(x) + C", "-cos(x) + C"], answer: 0, explanation: "The integral of cos(x) is sin(x) + C, since the derivative of sin(x) is cos(x)." }
+    ],
+    qaKeywords: [{ keywords: ["integral", "integration", "parts", "substitution"], answer: "Seminar Tasks 11 covers indefinite/definite integrals, using u-substitution, and integration by parts." }]
+  },
+  "MathComp_MockExamPaper_2024.pdf": {
+    summary: "Official 2024 Mathematics Mock Exam Paper covering matrices, vectors, complex numbers, progressions, and calculus.",
+    quiz: [
+      { question: "What is the modulus of the complex number 3 + 4i?", options: ["5", "7", "25", "1"], answer: 0, explanation: "The modulus r = sqrt(3^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5." }
+    ],
+    qaKeywords: [{ keywords: ["mock", "exam", "paper", "revision"], answer: "This is the official mock paper for Mathematics, testing all first-semester syllabus modules." }]
   }
 };
 
