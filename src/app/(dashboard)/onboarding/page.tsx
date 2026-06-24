@@ -23,6 +23,7 @@ import {
   Smartphone,
   CheckCircle2,
   ArrowRight,
+  ArrowLeft,
   Loader2,
   User
 } from "lucide-react"
@@ -34,7 +35,8 @@ import {
   GoogleAuthProvider,
   RecaptchaVerifier,
   signInWithPhoneNumber,
-  ConfirmationResult
+  ConfirmationResult,
+  signOut
 } from "firebase/auth"
 import { cn } from "@/lib/utils"
 import { useToast } from "@/hooks/use-toast"
@@ -194,6 +196,20 @@ export default function OnboardingPage() {
       } else {
         toast({ variant: "destructive", title: "Google Auth Failed", description: error.message })
       }
+    } finally {
+      setIsInitializing(false)
+    }
+  }
+
+  const handleBackToSignIn = async () => {
+    setIsInitializing(true)
+    try {
+      await signOut(auth)
+      setStep('login')
+      toast({ title: "Signed Out", description: "Returned to credential authorization screen." })
+    } catch (error: any) {
+      console.error("Sign Out Error:", error)
+      toast({ variant: "destructive", title: "Sign Out Failed", description: error.message })
     } finally {
       setIsInitializing(false)
     }
@@ -431,6 +447,15 @@ export default function OnboardingPage() {
                     >
                       INITIALIZE WORKSPACE <ArrowRight className="w-4 h-4" />
                     </Button>
+                    
+                    <button 
+                      type="button" 
+                      onClick={handleBackToSignIn} 
+                      disabled={isInitializing}
+                      className="text-[10px] text-slate-700 hover:text-slate-900 dark:text-muted-foreground dark:hover:text-foreground transition-colors uppercase font-black tracking-widest mt-3 text-center flex items-center justify-center gap-1.5 mx-auto"
+                    >
+                      <ArrowLeft className="w-3.5 h-3.5" /> Back to Change Sign-In Method
+                    </button>
                   </motion.div>
                 ) : (
                   // AUTHENTICATION FORMS (Login / Signup / Phone)
