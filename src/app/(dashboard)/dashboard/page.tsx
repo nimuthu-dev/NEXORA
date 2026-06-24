@@ -211,14 +211,19 @@ const focusModulesData = [
   },
   {
     code: "DS101", name: "Design Module",
-    desc: "UX/UI theory, wireframing tools, layouts, and typography guidelines.",
+    desc: "Algorithms, Software Development Life Cycle (SDLC), Program Design, and Flowcharts.",
     type: "Elective • Y1S1", color: "from-green-500 to-emerald-600", iconName: "Palette",
     resources: {
       lec: [
-        { name: "Design_Lec01_User_Interface_Principles.pdf", size: "6.8 MB", week: 1 },
-        { name: "Design_Mock_Project_Brief.pdf", size: "2.1 MB", week: 2 }
+        { name: "Design_Lecture1_Algorithms.pdf", size: "382 KB", week: 1 },
+        { name: "Design_Lecture2_SDLC.pdf", size: "719 KB", week: 2 },
+        { name: "Design_Lecture2_Program_Design.pdf", size: "177 KB", week: 2 },
+        { name: "Design_Lecture3_Program_Design.pdf", size: "177 KB", week: 3 }
       ],
-      tut: [{ name: "Design_Tutorial01_Figma_Wireframing.pdf", size: "4.2 MB", week: 1 }]
+      tut: [
+        { name: "Design_Tutorial1_Algorithms.pdf", size: "87 KB", week: 1 },
+        { name: "Design_Tutorial2_Flowcharts.pdf", size: "107 KB", week: 2 }
+      ]
     }
   }
 ];
@@ -540,6 +545,51 @@ const mockPdfStudyData: Record<string, { summary: string; quiz: { question: stri
       { question: "What is the modulus of the complex number 3 + 4i?", options: ["5", "7", "25", "1"], answer: 0, explanation: "The modulus r = sqrt(3^2 + 4^2) = sqrt(9 + 16) = sqrt(25) = 5." }
     ],
     qaKeywords: [{ keywords: ["mock", "exam", "paper", "revision"], answer: "This is the official mock paper for Mathematics, testing all first-semester syllabus modules." }]
+  },
+  "Design_Lecture1_Algorithms.pdf": {
+    summary: "Step-by-step logic design, properties of algorithms, and basic algorithmic problem solving.",
+    quiz: [
+      { question: "Which property of an algorithm states that it must eventually terminate?", options: ["Finiteness", "Definiteness", "Effectiveness", "Generality"], answer: 0, explanation: "Finiteness states that an algorithm must terminate after a finite number of steps." },
+      { question: "What is a language-agnostic representation of algorithmic logic called?", options: ["Compiler", "Pseudocode", "Machine Code", "Assembly"], answer: 1, explanation: "Pseudocode is an informal, high-level description of an algorithm that mimics code but is meant for human reading." }
+    ],
+    qaKeywords: [{ keywords: ["algorithm", "properties", "finiteness", "logic"], answer: "Design Lecture 1 covers the definition of algorithms, their core properties (finiteness, definiteness, effectiveness, input/output), and basic problem decomposition." }]
+  },
+  "Design_Lecture2_SDLC.pdf": {
+    summary: "Software Development Life Cycle phases including requirements, design, implementation, testing, and deployment.",
+    quiz: [
+      { question: "In which SDLC phase is the system architecture and database schema designed?", options: ["Requirements Gathering", "System Design", "Implementation", "Testing"], answer: 1, explanation: "The Design phase is where software engineers create architectural plans, database diagrams, and system wireframes." },
+      { question: "Which phase of the SDLC focuses on translating design documents into working source code?", options: ["Planning", "Testing", "Implementation", "Maintenance"], answer: 2, explanation: "The Implementation (or Coding) phase is where programmers write the software code." }
+    ],
+    qaKeywords: [{ keywords: ["sdlc", "phases", "lifecycle", "development"], answer: "Design Lecture 2 covers the Software Development Life Cycle (SDLC), describing phases: Requirements, Design, Implementation, Testing, Deployment, and Maintenance." }]
+  },
+  "Design_Lecture2_Program_Design.pdf": {
+    summary: "Program design methodologies, top-down design, and representation tools like pseudocode and flowcharts.",
+    quiz: [
+      { question: "What design approach decomposes a large system into smaller, more manageable modules?", options: ["Bottom-up design", "Top-down design", "Spaghetti coding", "Monolithic design"], answer: 1, explanation: "Top-down design starts with the high-level system and breaks it down into smaller sub-modules." },
+      { question: "Which tool represents program control flows visually using shapes?", options: ["Pseudocode", "Flowchart", "Compiler", "Interpreter"], answer: 1, explanation: "A flowchart is a visual representation of the sequence of steps and decisions needed to perform a process." }
+    ],
+    qaKeywords: [{ keywords: ["program design", "top-down", "modular", "decomposition"], answer: "This lecture explains top-down modular decomposition, program flowchart symbols, and structured programming principles." }]
+  },
+  "Design_Lecture3_Program_Design.pdf": {
+    summary: "Advanced control structures, nested selections, loop controls, and logical exception handling.",
+    quiz: [
+      { question: "Which loop control is best when the number of iterations is known beforehand?", options: ["While loop", "Definite (for) loop", "Infinite loop", "Sentinel loop"], answer: 1, explanation: "A for loop is a definite loop used when the number of iterations is predetermined." }
+    ],
+    qaKeywords: [{ keywords: ["selection", "loops", "control", "nested"], answer: "Lecture 3 covers advanced control structures, including nested conditionals, loops (while/for), and structural design refinement." }]
+  },
+  "Design_Tutorial1_Algorithms.pdf": {
+    summary: "Tutorial worksheet for writing basic algorithms and problem-solving steps.",
+    quiz: [
+      { question: "What is the first step in solving any algorithmic problem?", options: ["Write code", "Understand and define the problem", "Compile the program", "Run tests"], answer: 1, explanation: "You must fully understand the problem requirements and inputs/outputs before designing a solution." }
+    ],
+    qaKeywords: [{ keywords: ["tutorial", "algorithms", "problems", "tasks"], answer: "Tutorial 1 asks you to write algorithms for finding the maximum of three numbers and summing integers from 1 to N." }]
+  },
+  "Design_Tutorial2_Flowcharts.pdf": {
+    summary: "Tutorial sheet for drawing UML flowcharts with process blocks and decision diamonds.",
+    quiz: [
+      { question: "Which shape represents a decision/conditional branch in a flowchart?", options: ["Rectangle", "Oval", "Diamond", "Parallelogram"], answer: 2, explanation: "A diamond shape is used for decisions (like checking if X > Y), leading to Yes/No branching paths." }
+    ],
+    qaKeywords: [{ keywords: ["flowchart", "shapes", "diamond", "rectangle"], answer: "Tutorial 2 guides you through drawing flowcharts using standard shapes: ovals for start/end, rectangles for processes, and diamonds for decision branches." }]
   }
 };
 
@@ -574,6 +624,31 @@ const mockSlidesData: Record<string, string[]> = {
     "📌 Slide 1: Set Theory Foundations\n\n• Course Code: MA101\n• Lecturer: Dr. Ada Lovelace\n• Focus: Math structures, sets, relations, functions, and proofs.",
     "📌 Slide 2: Core Set Operations\n\n• Union (A ∪ B): Elements in A, B, or both.\n• Intersection (A ∩ B): Elements common to both sets.\n• Set Difference (A - B): Elements in A but not in B.\n• Cardinality (|A|): Number of elements in set A.",
     "📌 Slide 3: Power Sets\n\n• The set of all subsets of A.\n• If |A| = n, then the power set has 2^n elements."
+  ],
+  "Design_Lecture1_Algorithms.pdf": [
+    "📌 Slide 1: Introduction to Algorithms\n\n• Course Code: DS101\n• Focus: Algorithmic Thinking & Logic\n• Objective: Learn definitions, properties, and step-by-step problem-solving.",
+    "📌 Slide 2: Algorithmic Properties\n\n• Finiteness: Must terminate after a finite steps.\n• Definiteness: Each step must be clear and unambiguous.\n• Input/Output: Clearly defined bounds.\n• Effectiveness: Feasible and simple operations.",
+    "📌 Slide 3: Algorithmic Representation\n\n• Represented using text statements, pseudocode, flowcharts, or high-level languages."
+  ],
+  "Design_Lecture2_SDLC.pdf": [
+    "📌 Slide 1: Software Development Life Cycle (SDLC)\n\n• Focus: Structured Engineering Pipelines\n• Purpose: Deliver high-quality software on time and budget.",
+    "📌 Slide 2: Phases of SDLC\n\n• 1. Requirements & Planning\n• 3. Implementation (Coding)\n• 4. Testing & Deployment\n• 5. Maintenance\n• 2. Design (Architecture & Mockups)",
+    "📌 Slide 3: Key Objectives\n\n• Minimize developer error, improve documentation, and maintain standard build releases."
+  ],
+  "Design_Lecture2_Program_Design.pdf": [
+    "📌 Slide 1: Program Design Principles\n\n• Focus: Structuring software code flow before implementation.",
+    "📌 Slide 2: Top-down Decomposition\n\n• Break a complex module into smaller, independent sub-routines.\n• Improves modularity, testability, and code reusability.",
+    "📌 Slide 3: Flowchart Elements\n\n• Ovals: Start/End\n• Rectangles: Operations & Assignments\n• Diamonds: Conditionals & Decisions\n• Parallelograms: Input/Output"
+  ],
+  "Design_Lecture3_Program_Design.pdf": [
+    "📌 Slide 1: Advanced Program Design\n\n• Focus: Logic Control & Branch Structures.",
+    "📌 Slide 2: Control Logic Structures\n\n• Sequence: Default linear execution.\n• Selection: Nested if-else and switch statements.\n• Iteration: Definite (for) and indefinite (while) loop structures."
+  ],
+  "Design_Tutorial1_Algorithms.pdf": [
+    "📌 Slide 1: Tutorial 1: Algorithms\n\n• Problem Sheet exercises mapping step-by-step logic designs.\n• Tasks include finding maximum values and integer summations."
+  ],
+  "Design_Tutorial2_Flowcharts.pdf": [
+    "📌 Slide 1: Tutorial 2: Flowcharts\n\n• Visualizing sequence, selection, and loop conditions using standard UML flowchart shapes."
   ]
 };
 
@@ -934,36 +1009,69 @@ const mockPdfPagesData: Record<string, PdfPage[]> = {
       ]
     }
   ],
-  "Design_Lec01_User_Interface_Principles.pdf": [
+  "Design_Lecture1_Algorithms.pdf": [
     {
       title: "Design Module (DS101) - Lecture 1",
-      subtitle: "UI/UX Design Heuristics & Core Guidelines",
+      subtitle: "Introduction to Algorithms & Problem Solving",
       elements: [
-        { id: "dl1-h1", type: "heading", content: "1.1 User Interface Design Principles" },
-        { id: "dl1-p1", type: "paragraph", content: "User Interface (UI) design focuses on the visual styling of digital products. A successful interface is clear, consistent, responsive, and guides user interaction through visual hierarchies." },
-        { id: "dl1-b1", type: "bullet", content: "• Visual Hierarchy: Emphasizing important elements using size, color, weight, and layout contrast.\n• Consistency: Using uniform styling for buttons, typography, inputs, and patterns across all screens.\n• Feedback: Providing clear response status updates (loading states, hover effects, success messages)." }
+        { id: "dla1-h1", type: "heading", content: "1.1 Introduction to Algorithms" },
+        { id: "dla1-p1", type: "paragraph", content: "An algorithm is a step-by-step procedure or set of rules to be followed in calculations or other problem-solving operations, especially by a computer. In this lecture, we examine properties of algorithms (finiteness, definiteness, input, output, effectiveness) and how they translate to software logic." },
+        { id: "dla1-b1", type: "bullet", content: "• Input/Output: Well-defined inputs and outputs.\n• Finiteness: Must terminate after a finite number of steps.\n• Definiteness: Each step must be clearly and unambiguously defined.\n• Effectiveness: Steps must be basic enough to be carried out in practice." }
       ]
     }
   ],
-  "Design_Mock_Project_Brief.pdf": [
+  "Design_Lecture2_SDLC.pdf": [
     {
-      title: "Design Module (DS101) - Project Specifications",
-      subtitle: "Interactive Student Portal Redesign Brief",
+      title: "Design Module (DS101) - Lecture 2",
+      subtitle: "Software Development Life Cycle (SDLC)",
       elements: [
-        { id: "dmp-h1", type: "heading", content: "1.1 Student Portal Redesign Brief" },
-        { id: "dmp-p1", type: "paragraph", content: "Project Goal: Redesign the university course portal dashboard to improve accessibility, layout structure, clarity of reading materials, and performance." },
-        { id: "dmp-b1", type: "bullet", content: "• Problem Statement: Students find the existing dashboard cluttered, with low contrast in light mode.\n• Deliverables: High-fidelity Figma wireframes, interactive prototyping flows, and usability feedback.\n• Target Audience: Year 1 undergraduate students accessing study resources on both web and mobile." }
+        { id: "dl2s-h1", type: "heading", content: "2.1 Understanding SDLC Phases" },
+        { id: "dl2s-p1", type: "paragraph", content: "The Software Development Life Cycle (SDLC) is a structured process used by the software industry to design, develop, and test high-quality software. It provides a systematic pipeline for building software products effectively." },
+        { id: "dl2s-b1", type: "bullet", content: "• Planning & Requirements: Defining project goals and capturing user specifications.\n• Architecture & Design: Creating system design, database models, and user interface layouts.\n• Implementation (Coding): Translating design models into working source code.\n• Testing & Deployment: Validating program functionality and releasing it to production." }
       ]
     }
   ],
-  "Design_Tutorial01_Figma_Wireframing.pdf": [
+  "Design_Lecture2_Program_Design.pdf": [
+    {
+      title: "Design Module (DS101) - Lecture 2 Part 2",
+      subtitle: "Program Design Principles & Tools",
+      elements: [
+        { id: "dl2p-h1", type: "heading", content: "2.2 Program Design Methodologies" },
+        { id: "dl2p-p1", type: "paragraph", content: "Program design involves planning the code structure before programming starts. Key methodologies include top-down design (decomposing a problem into smaller sub-problems) and structured programming (using sequence, selection, and iteration)." },
+        { id: "dl2p-b1", type: "bullet", content: "• Modular Design: Breaking a program into independent, reusable function blocks.\n• Pseudocode: A text-based, language-agnostic representation of algorithmic logic.\n• Flowcharts: Visual diagrams that represent logical control flows and operations." }
+      ]
+    }
+  ],
+  "Design_Lecture3_Program_Design.pdf": [
+    {
+      title: "Design Module (DS101) - Lecture 3",
+      subtitle: "Advanced Program Design & Logical Control",
+      elements: [
+        { id: "dl3p-h1", type: "heading", content: "3.1 Logical Structures & Refinements" },
+        { id: "dl3p-p1", type: "paragraph", content: "Building on basic design, advanced program design focuses on refining control structures, handling exceptional states, and optimizing flow structures to ensure code readability and maintainability." },
+        { id: "dl3p-b1", type: "bullet", content: "• Selection Rules: Nested if-else logic and multi-branch switch/case statements.\n• Loop Control: Indefinite (while) vs definite (for) loops and sentinel values.\n• Error Handling: Designing logic blocks to anticipate and recover from invalid input states." }
+      ]
+    }
+  ],
+  "Design_Tutorial1_Algorithms.pdf": [
     {
       title: "Design Module (DS101) - Tutorial 1",
-      subtitle: "Figma wireframes & component auto-layout",
+      subtitle: "Introduction to Algorithms Sheet",
       elements: [
-        { id: "dt1-h1", type: "heading", content: "Tutorial 1: Figma Basics & Layout Grid" },
-        { id: "dt1-p1", type: "paragraph", content: "Learn to build structured layouts and responsive UI components in Figma." },
-        { id: "dt1-b1", type: "bullet", content: "• Task 1: Set up a 12-column layout grid on a desktop frame (1440px width).\n• Task 2: Create an auto-layout button component with customizable states (Default, Hover, Focus).\n• Task 3: Design a clean dashboard navigation header incorporating the logo, search bar, and user profile." }
+        { id: "dta1-h1", type: "heading", content: "Tutorial 1: Algorithmic Problem Solving" },
+        { id: "dta1-p1", type: "paragraph", content: "Solve the following foundational algorithmic design problems by writing step-by-step logic plans." },
+        { id: "dta1-b1", type: "bullet", content: "• Task 1: Write an algorithm to find the largest of three input numbers.\n• Task 2: Design an algorithm to calculate the sum of all integers from 1 to N.\n• Task 3: List the properties of an algorithm and evaluate whether a cooking recipe is a true algorithm." }
+      ]
+    }
+  ],
+  "Design_Tutorial2_Flowcharts.pdf": [
+    {
+      title: "Design Module (DS101) - Tutorial 2",
+      subtitle: "Flowcharts and Logical Branches",
+      elements: [
+        { id: "dta2-h1", type: "heading", content: "Tutorial 2: Drawing Logic Flowcharts" },
+        { id: "dta2-p1", type: "paragraph", content: "Translate programmatic logic into visual flowcharts using standard UML symbol representations." },
+        { id: "dta2-b1", type: "bullet", content: "• Terminal (Ovals): Representing the start and end of the flowchart execution.\n• Process (Rectangles): Representing operations, calculations, or variable assignments.\n• Decision (Diamonds): Representing logical branches/conditionals (e.g. Is X > 0?).\n• Task: Draw a flowchart for a program that prompts a user for their score, and outputs \"Pass\" if score >= 40, else \"Fail\"." }
       ]
     }
   ]
