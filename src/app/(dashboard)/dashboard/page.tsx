@@ -1451,36 +1451,36 @@ export default function DashboardPage() {
                       });
 
                       return (
-                        <div className="flex flex-col gap-6 mt-1">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-1">
                           {sortedWeekKeys.map((weekName) => (
-                            <div key={weekName} className="flex flex-col gap-3">
+                            <div key={weekName} className="flex flex-col gap-3 p-4 bg-muted/20 border border-border/40 rounded-2xl h-fit">
                               <div className="flex items-center gap-3">
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00C2FF] px-1 shrink-0">
                                   {weekName}
                                 </span>
                                 <div className="h-[1px] bg-foreground/10 flex-grow" />
                               </div>
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                              <div className="flex flex-col gap-2.5">
                                 {groupedByWeek[weekName].map((res, idx) => (
                                   <div key={idx} onClick={() => { setActivePdf(res.name); setPdfSubTab("qa"); setPdfMessages([{ sender: 'ai', text: `Study Deck loaded for "${res.name}". Ask me anything, or take the mock quiz!`, time: "Just now" }]); setUserQuizAnswers({}); setQuizSubmitted(false); }}
-                                    className="flex items-center justify-between p-4 bg-card border border-border rounded-xl group hover:border-primary/40 hover:bg-muted/40 transition-all cursor-pointer"
+                                    className="flex items-center justify-between p-3 bg-card border border-border rounded-xl group hover:border-primary/40 hover:bg-muted/40 transition-all cursor-pointer"
                                   >
-                                    <div className="flex items-center gap-3">
-                                      <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                                        <FileText className="w-4 h-4" />
+                                    <div className="flex items-center gap-3 min-w-0">
+                                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                                        <FileText className="w-3.5 h-3.5" />
                                       </div>
-                                      <div>
-                                        <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{res.name}</span>
-                                        <span className="block text-[9px] text-muted-foreground font-semibold">{res.size}</span>
+                                      <div className="min-w-0">
+                                        <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors block truncate" title={res.name}>{res.name}</span>
+                                        <span className="block text-[8px] text-muted-foreground font-semibold leading-none mt-0.5">{res.size}</span>
                                       </div>
                                     </div>
-                                    <div className="flex items-center gap-2 shrink-0">
+                                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
                                       <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('pdf'); }}
-                                        className="text-[9px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2.5 py-1.5 transition-colors">
+                                        className="text-[8px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2 py-1 transition-colors">
                                         {res.name.endsWith(".pdf") ? "View PDF" : res.name.endsWith(".pptx") ? "View Slides" : "View Doc"}
                                       </button>
                                       <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('notes'); }}
-                                        className="text-[9px] font-bold uppercase text-primary bg-primary/10 hover:bg-primary hover:text-white rounded-lg px-2.5 py-1.5 transition-colors">
+                                        className="text-[8px] font-bold uppercase text-primary bg-primary/10 hover:bg-primary hover:text-white rounded-lg px-2 py-1 transition-colors">
                                         Short Notes
                                       </button>
                                     </div>
