@@ -103,31 +103,31 @@ const focusModulesData = [
     type: "Core Module • Y1S1", color: "from-blue-500 to-indigo-600", iconName: "Code",
     resources: {
       lec: [
-        { name: "SD_Lec01_Introduction.pdf", size: "1.1 MB" },
-        { name: "SD_Lec02_Variables_Types.pdf", size: "1.8 MB" },
-        { name: "SD_Lec03_Conditionals.pptx", size: "2.4 MB" },
-        { name: "SD_Lec04_Loops.pptx", size: "2.0 MB" },
-        { name: "SD_Lec05_User_Defined_Functions.pdf", size: "1.5 MB" },
-        { name: "SD_Lec06_Lists.pptx", size: "2.5 MB" },
-        { name: "SD_Lec07_Databases_SQLite.pdf", size: "335 KB" },
-        { name: "SD_Lec08_Strings.pdf", size: "1.2 MB" },
-        { name: "SD_Lec11_Revision.pptx", size: "176 KB" }
+        { name: "SD_Lec01_Introduction.pdf", size: "1.1 MB", week: 1 },
+        { name: "SD_Lec02_Variables_Types.pdf", size: "1.8 MB", week: 2 },
+        { name: "SD_Lec03_Conditionals.pptx", size: "2.4 MB", week: 3 },
+        { name: "SD_Lec04_Loops.pptx", size: "2.0 MB", week: 4 },
+        { name: "SD_Lec05_User_Defined_Functions.pdf", size: "1.5 MB", week: 5 },
+        { name: "SD_Lec06_Lists.pptx", size: "2.5 MB", week: 6 },
+        { name: "SD_Lec07_Databases_SQLite.pdf", size: "335 KB", week: 7 },
+        { name: "SD_Lec08_Strings.pdf", size: "1.2 MB", week: 8 },
+        { name: "SD_Lec11_Revision.pptx", size: "176 KB", week: 11 }
       ],
       tut: [
-        { name: "SD_Tutorial01_Syntax.pdf", size: "581 KB" },
-        { name: "SD_Tutorial02_Conditionals.pdf", size: "564 KB" },
-        { name: "SD_Tutorial03_Loops.pdf", size: "249 KB" },
-        { name: "SD_Tutorial04_Functions.pdf", size: "440 KB" },
-        { name: "SD_Tutorial05_Lists.pdf", size: "208 KB" },
-        { name: "SD_Tutorial07_Lists_Dicts.pdf", size: "298 KB" },
-        { name: "SD_Tutorial08_Strings.pdf", size: "460 KB" },
-        { name: "SD_Tutorial09_Databases_SQLite.pdf", size: "214 KB" }
+        { name: "SD_Tutorial01_Syntax.pdf", size: "581 KB", week: 1 },
+        { name: "SD_Tutorial02_Conditionals.pdf", size: "564 KB", week: 2 },
+        { name: "SD_Tutorial03_Loops.pdf", size: "249 KB", week: 3 },
+        { name: "SD_Tutorial04_Functions.pdf", size: "440 KB", week: 4 },
+        { name: "SD_Tutorial05_Lists.pdf", size: "208 KB", week: 5 },
+        { name: "SD_Tutorial07_Lists_Dicts.pdf", size: "298 KB", week: 7 },
+        { name: "SD_Tutorial08_Strings.pdf", size: "460 KB", week: 8 },
+        { name: "SD_Tutorial09_Databases_SQLite.pdf", size: "214 KB", week: 9 }
       ],
       rev: [
-        { name: "Python_Hand_Written_Notes.pdf", size: "26.0 MB" },
-        { name: "Python_Revision_Material.docx", size: "29 KB" },
-        { name: "Python_Revision_Part2.docx", size: "12 KB" },
-        { name: "SD_Lec11_Revision.pptx", size: "176 KB" }
+        { name: "Python_Hand_Written_Notes.pdf", size: "26.0 MB", week: 11 },
+        { name: "Python_Revision_Material.docx", size: "29 KB", week: 11 },
+        { name: "Python_Revision_Part2.docx", size: "12 KB", week: 11 },
+        { name: "SD_Lec11_Revision.pptx", size: "176 KB", week: 11 }
       ]
     }
   },
@@ -137,27 +137,27 @@ const focusModulesData = [
     type: "Core Module • Y1S1", color: "from-purple-500 to-pink-600", iconName: "Cpu",
     resources: {
       lec: [
-        { name: "CSF_Lecture_1_Part_1_of_2.pdf", size: "170 KB" },
-        { name: "CSF_Lecture_1_Part_2_of_2.pdf", size: "106 KB" },
-        { name: "CSF_Lecture2_Part_1_of_2.pdf", size: "112 KB" },
-        { name: "CSF_Binary_Operations.pdf", size: "135 KB" },
-        { name: "CSF_Range_of_Values_Unsigned.pdf", size: "161 KB" },
-        { name: "CSF_Signed_Integers.pdf", size: "313 KB" },
-        { name: "CSF_Real_values_in_Binary_2.pdf", size: "332 KB" },
-        { name: "CSF_1_Data_Storage.pdf", size: "97 KB" },
-        { name: "CSF_2_Character_Codes.pdf", size: "1.0 MB" },
-        { name: "CSF_3_Images.pdf", size: "149 KB" },
-        { name: "CSF_File_Systems.pdf", size: "360 KB" },
-        { name: "CSF_Operating_Systems.pdf", size: "1.3 MB" },
-        { name: "CSF_File_Types.pdf", size: "783 KB" },
-        { name: "CSF_Networking.pdf", size: "591 KB" }
+        { name: "CSF_Lecture_1_Part_1_of_2.pdf", size: "170 KB", week: 1 },
+        { name: "CSF_Lecture_1_Part_2_of_2.pdf", size: "106 KB", week: 1 },
+        { name: "CSF_Lecture2_Part_1_of_2.pdf", size: "112 KB", week: 2 },
+        { name: "CSF_Binary_Operations.pdf", size: "135 KB", week: 3 },
+        { name: "CSF_Range_of_Values_Unsigned.pdf", size: "161 KB", week: 3 },
+        { name: "CSF_Signed_Integers.pdf", size: "313 KB", week: 4 },
+        { name: "CSF_Real_values_in_Binary_2.pdf", size: "332 KB", week: 5 },
+        { name: "CSF_1_Data_Storage.pdf", size: "97 KB", week: 7 },
+        { name: "CSF_2_Character_Codes.pdf", size: "1.0 MB", week: 8 },
+        { name: "CSF_3_Images.pdf", size: "149 KB", week: 9 },
+        { name: "CSF_File_Systems.pdf", size: "360 KB", week: 10 },
+        { name: "CSF_Operating_Systems.pdf", size: "1.3 MB", week: 10 },
+        { name: "CSF_File_Types.pdf", size: "783 KB", week: 11 },
+        { name: "CSF_Networking.pdf", size: "591 KB", week: 12 }
       ],
       tut: [
-        { name: "CSF_Tutorial_Bicimal.pdf", size: "101 KB" },
-        { name: "CSF_Tutorial_IEEE_754_Solutions.pdf", size: "3 KB" },
-        { name: "CSF_Tutorial_IEEE_754_Standard.pdf", size: "98 KB" },
-        { name: "CSF_Tutorial_DSZ_dd.pdf", size: "12 KB" },
-        { name: "CSF_Tutorial_OS_QA.pdf", size: "5 KB" }
+        { name: "CSF_Tutorial_Bicimal.pdf", size: "101 KB", week: 2 },
+        { name: "CSF_Tutorial_IEEE_754_Standard.pdf", size: "98 KB", week: 5 },
+        { name: "CSF_Tutorial_IEEE_754_Solutions.pdf", size: "3 KB", week: 5 },
+        { name: "CSF_Tutorial_DSZ_dd.pdf", size: "12 KB", week: 8 },
+        { name: "CSF_Tutorial_OS_QA.pdf", size: "5 KB", week: 10 }
       ]
     }
   },
@@ -167,12 +167,12 @@ const focusModulesData = [
     type: "Core Module • Y1S1", color: "from-orange-500 to-red-600", iconName: "Binary",
     resources: {
       lec: [
-        { name: "Discrete_Mathematics_Calculus.pdf", size: "8.1 MB" },
-        { name: "Maths_Lec02_Set_Theory.pdf", size: "2.3 MB" }
+        { name: "Discrete_Mathematics_Calculus.pdf", size: "8.1 MB", week: 1 },
+        { name: "Maths_Lec02_Set_Theory.pdf", size: "2.3 MB", week: 2 }
       ],
       tut: [
-        { name: "Maths_Tutorial01_Sets.pdf", size: "1.1 MB" },
-        { name: "Maths_Tutorial02_Relations.pdf", size: "1.3 MB" }
+        { name: "Maths_Tutorial01_Sets.pdf", size: "1.1 MB", week: 1 },
+        { name: "Maths_Tutorial02_Relations.pdf", size: "1.3 MB", week: 2 }
       ]
     }
   },
@@ -182,10 +182,10 @@ const focusModulesData = [
     type: "Required • Y1S1", color: "from-cyan-500 to-teal-600", iconName: "Languages",
     resources: {
       lec: [
-        { name: "English_Lec01_Academic_Writing.pdf", size: "3.2 MB" },
-        { name: "English_Presentation_Rubric.pdf", size: "1.5 MB" }
+        { name: "English_Lec01_Academic_Writing.pdf", size: "3.2 MB", week: 1 },
+        { name: "English_Presentation_Rubric.pdf", size: "1.5 MB", week: 2 }
       ],
-      tut: [{ name: "English_Tutorial01_Grammar.pdf", size: "900 KB" }]
+      tut: [{ name: "English_Tutorial01_Grammar.pdf", size: "900 KB", week: 1 }]
     }
   },
   {
@@ -194,10 +194,10 @@ const focusModulesData = [
     type: "Elective • Y1S1", color: "from-green-500 to-emerald-600", iconName: "Palette",
     resources: {
       lec: [
-        { name: "Design_Lec01_User_Interface_Principles.pdf", size: "6.8 MB" },
-        { name: "Design_Mock_Project_Brief.pdf", size: "2.1 MB" }
+        { name: "Design_Lec01_User_Interface_Principles.pdf", size: "6.8 MB", week: 1 },
+        { name: "Design_Mock_Project_Brief.pdf", size: "2.1 MB", week: 2 }
       ],
-      tut: [{ name: "Design_Tutorial01_Figma_Wireframing.pdf", size: "4.2 MB" }]
+      tut: [{ name: "Design_Tutorial01_Figma_Wireframing.pdf", size: "4.2 MB", week: 1 }]
     }
   }
 ];
@@ -1335,38 +1335,75 @@ export default function DashboardPage() {
                     )}
                   </div>
 
-                  {/* File list */}
+                  {/* File list grouped by weeks */}
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground px-1">
                       {activeFocusModule.resources[studyMode]?.length || 0} files — click to open Study Deck
                     </span>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {(activeFocusModule.resources[studyMode] || []).map((res, idx) => (
-                        <div key={idx} onClick={() => { setActivePdf(res.name); setPdfSubTab("qa"); setPdfMessages([{ sender: 'ai', text: `Study Deck loaded for "${res.name}". Ask me anything, or take the mock quiz!`, time: "Just now" }]); setUserQuizAnswers({}); setQuizSubmitted(false); }}
-                          className="flex items-center justify-between p-4 bg-card border border-border rounded-xl group hover:border-primary/40 hover:bg-muted/40 transition-all cursor-pointer"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
-                              <FileText className="w-4 h-4" />
+                    {(() => {
+                      const resourcesList = activeFocusModule.resources[studyMode] || [];
+                      const groupedByWeek: Record<string, typeof resourcesList> = {};
+                      resourcesList.forEach(res => {
+                        const weekKey = (res as any).week ? `Week ${(res as any).week}` : "General / Additional Resources";
+                        if (!groupedByWeek[weekKey]) {
+                          groupedByWeek[weekKey] = [];
+                        }
+                        groupedByWeek[weekKey].push(res);
+                      });
+
+                      const sortedWeekKeys = Object.keys(groupedByWeek).sort((a, b) => {
+                        if (a.startsWith("Week") && b.startsWith("Week")) {
+                          const numA = parseInt(a.replace("Week ", ""), 10);
+                          const numB = parseInt(b.replace("Week ", ""), 10);
+                          return numA - numB;
+                        }
+                        if (a.startsWith("Week")) return -1;
+                        if (b.startsWith("Week")) return 1;
+                        return a.localeCompare(b);
+                      });
+
+                      return (
+                        <div className="flex flex-col gap-6 mt-1">
+                          {sortedWeekKeys.map((weekName) => (
+                            <div key={weekName} className="flex flex-col gap-3">
+                              <div className="flex items-center gap-3">
+                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00C2FF] px-1 shrink-0">
+                                  {weekName}
+                                </span>
+                                <div className="h-[1px] bg-foreground/10 flex-grow" />
+                              </div>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                {groupedByWeek[weekName].map((res, idx) => (
+                                  <div key={idx} onClick={() => { setActivePdf(res.name); setPdfSubTab("qa"); setPdfMessages([{ sender: 'ai', text: `Study Deck loaded for "${res.name}". Ask me anything, or take the mock quiz!`, time: "Just now" }]); setUserQuizAnswers({}); setQuizSubmitted(false); }}
+                                    className="flex items-center justify-between p-4 bg-card border border-border rounded-xl group hover:border-primary/40 hover:bg-muted/40 transition-all cursor-pointer"
+                                  >
+                                    <div className="flex items-center gap-3">
+                                      <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                                        <FileText className="w-4 h-4" />
+                                      </div>
+                                      <div>
+                                        <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{res.name}</span>
+                                        <span className="block text-[9px] text-muted-foreground font-semibold">{res.size}</span>
+                                      </div>
+                                    </div>
+                                    <div className="flex items-center gap-2 shrink-0">
+                                      <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('pdf'); }}
+                                        className="text-[9px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2.5 py-1.5 transition-colors">
+                                        {res.name.endsWith(".pdf") ? "View PDF" : res.name.endsWith(".pptx") ? "View Slides" : "View Doc"}
+                                      </button>
+                                      <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('notes'); }}
+                                        className="text-[9px] font-bold uppercase text-primary bg-primary/10 hover:bg-primary hover:text-white rounded-lg px-2.5 py-1.5 transition-colors">
+                                        Short Notes
+                                      </button>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
-                            <div>
-                              <span className="text-xs font-bold text-foreground group-hover:text-primary transition-colors">{res.name}</span>
-                              <span className="block text-[9px] text-muted-foreground font-semibold">{res.size}</span>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 shrink-0">
-                            <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('pdf'); }}
-                              className="text-[9px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2.5 py-1.5 transition-colors">
-                              {res.name.endsWith(".pdf") ? "View PDF" : res.name.endsWith(".pptx") ? "View Slides" : "View Doc"}
-                            </button>
-                            <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('notes'); }}
-                              className="text-[9px] font-bold uppercase text-primary bg-primary/10 hover:bg-primary hover:text-white rounded-lg px-2.5 py-1.5 transition-colors">
-                              Short Notes
-                            </button>
-                          </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
+                      );
+                    })()}
                   </div>
                 </div>
               ) : activeModule && activePdf && activeFocusModule ? (
