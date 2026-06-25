@@ -1099,6 +1099,19 @@ export default function DashboardPage() {
   const [mounted, setMounted] = useState(false);
   const [themeMode, setThemeMode] = useState<'dark' | 'light'>('dark');
 
+  const [userName, setUserName] = useState("Student");
+  const [userDegree, setUserDegree] = useState("BSc (Hons) Computer Science");
+  const [userYearSem, setUserYearSem] = useState("Year 1 · Semester 1 · Active");
+
+  const getInitials = (nameStr: string) => {
+    if (!nameStr) return "ST";
+    const parts = nameStr.trim().split(/\s+/);
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return nameStr.slice(0, 2).toUpperCase();
+  };
+
   const [selectedYear, setSelectedYear] = useState<string>("Y1S1");
   const [currentCalMonth, setCurrentCalMonth] = useState(new Date().getMonth());
   const [currentCalYear, setCurrentCalYear] = useState(new Date().getFullYear());
@@ -1238,7 +1251,33 @@ export default function DashboardPage() {
       }
     } catch (e) {}
     setAiMessages([{ sender: 'ai', text: "Hi! I'm your Nexora AI study assistant. Ask me anything about Software Development, CSF, Mathematics, English, or Design modules.", time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]);
-    return () => clearInterval(clockTimer);
+
+    const degreeMap: Record<string, string> = {
+      cs: "BSc (Hons) Computer Science",
+      aids: "BSc (Hons) AI & Data Science",
+      se: "BSc (Hons) Software Engineering"
+    };
+
+    const loadProfile = () => {
+      const name = safeGetItem("nexora-name");
+      if (name) setUserName(name);
+
+      const deg = safeGetItem("nexora-degree");
+      if (deg && degreeMap[deg]) setUserDegree(degreeMap[deg]);
+
+      const yr = safeGetItem("nexora-year");
+      const sem = safeGetItem("nexora-semester");
+      if (yr && sem) {
+        setUserYearSem(`Year ${yr} · Semester ${sem} · Active`);
+      }
+    };
+    loadProfile();
+    window.addEventListener('profile-change', loadProfile);
+
+    return () => {
+      clearInterval(clockTimer);
+      window.removeEventListener('profile-change', loadProfile);
+    };
   }, []);
 
   useEffect(() => { if (mounted) calculateAlerts(deadlines); }, [deadlines, mounted]);
@@ -1448,7 +1487,7 @@ export default function DashboardPage() {
     <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col gap-5 max-w-[1600px] mx-auto text-foreground">
 
       {/* ══ Professional Application Header ══ */}
-      <motion.header variants={item} className="w-full flex items-center gap-2 sm:gap-3 px-2.5 py-2 sm:px-4 sm:py-3 bg-card border border-border rounded-xl sm:rounded-2xl shadow-sm">
+      <motion.header variants={item} className="w-full flex items-center gap-2 sm:gap-3 px-2.5 py-2 sm:px-4 sm:py-3 liquid-glass rounded-xl sm:rounded-2xl shadow-sm">
         {/* Nexora Brand */}
         <div className="flex items-center gap-3 shrink-0">
           <div className="w-9 h-9 flex items-center justify-center">
@@ -1471,8 +1510,8 @@ export default function DashboardPage() {
             </svg>
           </div>
           <div className="hidden sm:flex flex-col leading-none">
-            <span className="text-foreground font-black text-sm tracking-wide">NEXORA</span>
-            <span className="text-[9px] text-primary font-bold uppercase tracking-widest">Academic Suite</span>
+            <span className="text-foreground font-black text-sm tracking-wide">Welcome, {userName}! 👋</span>
+            <span className="text-[9px] text-primary font-bold uppercase tracking-widest">NEXORA ACADEMIC SUITE</span>
           </div>
         </div>
 
@@ -1543,7 +1582,7 @@ export default function DashboardPage() {
             <div className="flex flex-col gap-5">
 
               {/* Module Selector */}
-              <div className="bg-card border border-transparent rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
+              <div className="liquid-glass rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
@@ -1574,7 +1613,7 @@ export default function DashboardPage() {
                           "flex items-center gap-2 sm:gap-3.5 p-2.5 sm:p-4 rounded-lg sm:rounded-xl cursor-pointer text-left transition-all w-full relative overflow-hidden shadow-sm hover:shadow border border-transparent",
                           sel 
                             ? `bg-gradient-to-tr ${mod.color} text-white scale-[1.02]`
-                            : "bg-card hover:bg-muted/40 text-foreground"
+                            : "liquid-glass hover:bg-muted/40 text-foreground"
                         )}
                       >
                         {!sel && (
@@ -1606,13 +1645,13 @@ export default function DashboardPage() {
               </div>
 
               {selectedYear !== "Y1S1" ? (
-                <div className="flex flex-col items-center justify-center p-16 bg-card border border-transparent rounded-2xl text-center min-h-[280px] shadow-sm">
+                <div className="flex flex-col items-center justify-center p-16 liquid-glass rounded-2xl text-center min-h-[280px] shadow-sm">
                   <Library className="w-10 h-10 text-muted-foreground/20 mb-3" />
                   <h3 className="font-bold text-sm text-foreground">No resources for {selectedYear}</h3>
                   <p className="text-xs text-muted-foreground mt-1">Switch back to Year 1 Sem 1 to access modules.</p>
                 </div>
               ) : !activeModule ? (
-                <div className="flex flex-col items-center justify-center p-16 bg-card border border-dashed border-border/50 rounded-2xl text-center min-h-[280px] shadow-sm">
+                <div className="flex flex-col items-center justify-center p-16 liquid-glass border border-dashed border-primary/20 rounded-2xl text-center min-h-[280px] shadow-sm">
                   <Library className="w-12 h-12 text-primary/20 mb-4" />
                   <h3 className="font-black text-xl text-foreground">Select a Module Above</h3>
                   <p className="text-xs text-muted-foreground mt-2 max-w-sm">Choose a module to access lecture slides, tutorial sheets, and interactive AI Study Decks.</p>
@@ -1620,7 +1659,7 @@ export default function DashboardPage() {
               ) : activeModule && !activePdf && activeFocusModule ? (
                 <div className="flex flex-col gap-5">
                   {/* Active module hero — BIG display */}
-                  <div className="flex items-center gap-5 p-6 bg-card border border-transparent rounded-2xl relative overflow-hidden shadow-sm">
+                  <div className="flex items-center gap-5 p-6 liquid-glass rounded-2xl relative overflow-hidden shadow-sm">
                     <div className="absolute inset-0 opacity-[0.04] bg-gradient-to-br from-primary to-indigo-600 pointer-events-none" />
                     <div className={cn("w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center text-white shadow-lg shrink-0", activeFocusModule.color)}>
                       <ModuleIcon name={activeFocusModule.iconName} cls="w-7 h-7" />
@@ -1692,7 +1731,7 @@ export default function DashboardPage() {
                               <div className="flex flex-col gap-2.5">
                                 {groupedByWeek[weekName].map((res, idx) => (
                                   <div key={idx} onClick={() => { setActivePdf(res.name); setPdfSubTab("qa"); setPdfMessages([{ sender: 'ai', text: `Study Deck loaded for "${res.name}". Ask me anything, or take the mock quiz!`, time: "Just now" }]); setUserQuizAnswers({}); setQuizSubmitted(false); }}
-                                    className="flex items-center justify-between p-3 bg-card/65 border border-transparent hover:border-primary/20 rounded-xl group hover:bg-muted/50 transition-all cursor-pointer shadow-sm hover:shadow"
+                                    className="flex items-center justify-between p-3 liquid-glass hover:border-primary/20 rounded-xl group hover:bg-muted/50 transition-all cursor-pointer shadow-sm hover:shadow"
                                   >
                                     <div className="flex items-center gap-3 min-w-0">
                                       <div className="w-8 h-8 rounded-lg bg-primary/10 border border-transparent flex items-center justify-center text-primary shrink-0">
@@ -1726,7 +1765,7 @@ export default function DashboardPage() {
               ) : activeModule && activePdf && activeFocusModule ? (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
                   {/* Left: file info + timer */}
-                  <Card className="lg:col-span-7 bg-card border border-transparent rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
+                  <Card className="lg:col-span-7 liquid-glass rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                     <div className="flex items-center justify-between">
                       <button onClick={() => setActivePdf(null)} className="text-xs font-bold text-primary hover:text-foreground transition-colors flex items-center gap-1">
                         ← Back to Files
@@ -1781,7 +1820,7 @@ export default function DashboardPage() {
                     </div>
 
                     {pdfSubTab === "qa" && (
-                      <div className="bg-card border border-transparent rounded-xl p-4 flex flex-col gap-3 flex-1 min-h-[300px] shadow-sm">
+                      <div className="liquid-glass rounded-xl p-4 flex flex-col gap-3 flex-1 min-h-[300px] shadow-sm">
                         <div className="flex-1 flex flex-col gap-2 overflow-y-auto max-h-[220px] pr-1">
                           {pdfMessages.map((msg, i) => (
                             <div key={i} className={cn("max-w-[90%] p-3 rounded-xl text-[11px] leading-relaxed", msg.sender === 'user' ? "bg-primary text-white self-end rounded-tr-none" : "bg-muted text-foreground border border-transparent self-start rounded-tl-none shadow-sm")}>
@@ -1797,7 +1836,7 @@ export default function DashboardPage() {
                     )}
 
                     {pdfSubTab === "quiz" && (
-                      <div className="bg-card border border-transparent rounded-xl p-4 flex flex-col gap-4 max-h-[380px] overflow-y-auto shadow-sm">
+                      <div className="liquid-glass rounded-xl p-4 flex flex-col gap-4 max-h-[380px] overflow-y-auto shadow-sm">
                         {!quizSubmitted ? (
                           <div className="flex flex-col gap-4 text-xs">
                             {(mockPdfStudyData[activePdf]?.quiz || defaultPdfStudyData.quiz).map((q, qi) => (
@@ -1869,7 +1908,7 @@ export default function DashboardPage() {
 
               <div className="grid grid-cols-1 xl:grid-cols-12 gap-5">
                 {/* Calendar */}
-                <div className="xl:col-span-7 bg-card border border-border rounded-2xl p-5 flex flex-col gap-4">
+                <div className="xl:col-span-7 liquid-glass rounded-2xl p-5 flex flex-col gap-4">
                   <div className="flex items-center justify-between">
                     <button onClick={handlePrevMonth} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors font-bold text-base">‹</button>
                     <span className="text-sm font-black text-foreground uppercase tracking-wide">{monthNames[currentCalMonth]} {currentCalYear}</span>
@@ -1920,7 +1959,7 @@ export default function DashboardPage() {
 
                 {/* Right column */}
                 <div className="xl:col-span-5 flex flex-col gap-4">
-                  <form onSubmit={handleAddDeadline} className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-3">
+                  <form onSubmit={handleAddDeadline} className="liquid-glass rounded-2xl p-5 flex flex-col gap-3">
                     <div className="flex items-center gap-2 pb-2 border-b border-border">
                       <Plus className="w-4 h-4 text-primary" />
                       <span className="text-sm font-bold text-foreground">Add Event</span>
@@ -1952,7 +1991,7 @@ export default function DashboardPage() {
                     <Button type="submit" className="h-9 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-lg">Save Event</Button>
                   </form>
 
-                  <div className="bg-card border border-border rounded-2xl p-4 flex flex-col gap-3">
+                  <div className="liquid-glass rounded-2xl p-4 flex flex-col gap-3">
                     <div className="flex items-center justify-between pb-2 border-b border-border">
                       <span className="text-xs font-bold text-foreground">
                         {selectedCalDate ? `Events on ${selectedCalDate}` : "All Events"} ({deadlines.filter(d => !selectedCalDate || d.date === selectedCalDate).length})
@@ -2003,7 +2042,7 @@ export default function DashboardPage() {
                   { label: "Semester Average", value: marks.length ? `${avg}%` : "—", sub: `${avg}% score`, color: "text-primary" },
                   { label: "Estimated GPA", value: calcGPA(), sub: "grade estimate", color: "text-emerald-500" },
                 ].map(stat => (
-                  <div key={stat.label} className="bg-card border border-border rounded-2xl p-5 flex flex-col gap-1">
+                  <div key={stat.label} className="liquid-glass rounded-2xl p-5 flex flex-col gap-1">
                     <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{stat.label}</span>
                     <span className={cn("text-4xl font-black", stat.color)}>{stat.value}</span>
                     {stat.label === "Semester Average" && marks.length > 0 && (
@@ -2023,7 +2062,7 @@ export default function DashboardPage() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <Card className="lg:col-span-4 bg-card border border-border rounded-2xl p-5 flex flex-col gap-3">
+                <Card className="lg:col-span-4 liquid-glass rounded-2xl p-5 flex flex-col gap-3">
                   <div className="flex items-center gap-2 pb-2 border-b border-border">
                     <BarChart2 className="w-4 h-4 text-primary" />
                     <span className="text-sm font-bold text-foreground">Log Assessment</span>
@@ -2042,7 +2081,7 @@ export default function DashboardPage() {
                   </form>
                 </Card>
 
-                <Card className="lg:col-span-8 bg-card border border-border rounded-2xl p-5 flex flex-col gap-3">
+                <Card className="lg:col-span-8 liquid-glass rounded-2xl p-5 flex flex-col gap-3">
                   <div className="flex items-center justify-between pb-2 border-b border-border">
                     <span className="text-sm font-bold text-foreground">Grade History</span>
                     {marks.length > 0 && <button onClick={handleClearMarks} className="text-[9px] text-red-500 hover:text-red-400 font-bold uppercase tracking-wider">Clear All</button>}
@@ -2082,7 +2121,7 @@ export default function DashboardPage() {
 
           {/* ─── TAB 4: AI TUTOR ─── */}
           {activeTab === "ai" && (
-            <Card className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-5 min-h-[500px] h-[calc(100dvh-15rem)] lg:h-[600px]">
+            <Card className="liquid-glass rounded-2xl p-6 flex flex-col gap-5 min-h-[500px] h-[calc(100dvh-15rem)] lg:h-[600px]">
               <div className="flex items-center justify-between pb-3 border-b border-border">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -2114,18 +2153,18 @@ export default function DashboardPage() {
           {activeTab === "summary" && (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
               {/* Profile */}
-              <Card className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4">
+              <Card className="liquid-glass rounded-2xl p-6 flex flex-col gap-4">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-primary/20 shrink-0 relative">
-                    NP
+                    {getInitials(userName)}
                     <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-card flex items-center justify-center">
                       <CheckCircle2 className="w-2.5 h-2.5 text-white" />
                     </span>
                   </div>
                   <div>
-                    <h3 className="text-base font-black text-foreground">Nimuthu Pathirathne</h3>
-                    <p className="text-xs text-muted-foreground">BSc (Hons) Computer Science</p>
-                    <p className="text-[10px] text-primary font-semibold mt-0.5">Year 1 · Semester 1 · Active</p>
+                    <h3 className="text-base font-black text-foreground">{userName}</h3>
+                    <p className="text-xs text-muted-foreground">{userDegree}</p>
+                    <p className="text-[10px] text-primary font-semibold mt-0.5">{userYearSem}</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-2 pt-2 border-t border-border">
@@ -2154,7 +2193,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* Streak */}
-              <Card className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-5">
+              <Card className="liquid-glass rounded-2xl p-6 flex flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-black text-foreground">Study Streak</span>
                   <Flame className="w-5 h-5 text-orange-400" />
@@ -2195,7 +2234,7 @@ export default function DashboardPage() {
               </Card>
 
               {/* GPA Overview */}
-              <Card className="bg-card border border-border rounded-2xl p-6 flex flex-col gap-4">
+              <Card className="liquid-glass rounded-2xl p-6 flex flex-col gap-4">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-black text-foreground">Academic Overview</span>
                   <Award className="w-5 h-5 text-primary" />
@@ -2230,7 +2269,7 @@ export default function DashboardPage() {
           {/* ─── TAB 6: MOCK ARENA ─── */}
           {activeTab === "mock-arena" && (
             <div className="flex flex-col gap-6">
-              <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 p-4 bg-card border border-border rounded-2xl">
+              <header className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 p-4 liquid-glass rounded-2xl">
                 <div className="flex flex-col gap-1">
                   <h1 className="text-2xl font-black tracking-tight text-foreground">Mock Arena</h1>
                   <p className="text-xs text-muted-foreground">Test your knowledge under real exam conditions.</p>
@@ -2256,7 +2295,7 @@ export default function DashboardPage() {
                   const isLocked = exam.status === "Locked";
                   return (
                     <Card key={exam.id} className={cn(
-                      "bg-card border border-border rounded-2xl overflow-hidden transition-all hover:bg-muted/35 hover:border-primary/30",
+                      "liquid-glass border border-transparent rounded-2xl overflow-hidden transition-all hover:bg-muted/35 hover:border-primary/30",
                       isLocked && "opacity-60"
                     )}>
                       <div className="p-6 flex flex-col gap-4">
@@ -2302,7 +2341,7 @@ export default function DashboardPage() {
                 })}
               </div>
 
-              <Card className="bg-card border border-border rounded-2xl p-6">
+              <Card className="liquid-glass rounded-2xl p-6">
                 <h3 className="text-base font-black text-foreground">Performance History</h3>
                 <p className="text-xs text-muted-foreground">Your recent attempts and scores</p>
                 
@@ -2336,7 +2375,7 @@ export default function DashboardPage() {
           {/* ─── TAB 7: GPA ANALYTICS ─── */}
           {activeTab === "analytics" && (
             <div className="flex flex-col gap-6">
-              <header className="flex flex-col gap-1 p-4 bg-card border border-border rounded-2xl">
+              <header className="flex flex-col gap-1 p-4 liquid-glass rounded-2xl">
                 <h1 className="text-2xl font-black tracking-tight text-foreground">GPA Analytics</h1>
                 <p className="text-xs text-muted-foreground">Track your academic journey and performance trends.</p>
               </header>
@@ -2348,7 +2387,7 @@ export default function DashboardPage() {
                   { title: "Total Credits", value: "124", sub: "84% Complete", icon: <TrendingUp className="w-4 h-4 text-emerald-500" /> },
                   { title: "Dean's List", value: "3 Times", sub: "Consecutive Streak", icon: <Award className="w-4 h-4 text-indigo-500" /> },
                 ].map((stat, idx) => (
-                  <Card key={idx} className="bg-card border border-border rounded-2xl hover:bg-muted/30 transition-all">
+                  <Card key={idx} className="liquid-glass hover:bg-muted/30 transition-all">
                     <div className="p-5 flex flex-col gap-2">
                       <div className="flex justify-between items-center">
                         <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground">{stat.title}</span>
@@ -2364,7 +2403,7 @@ export default function DashboardPage() {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                <Card className="lg:col-span-8 bg-card border border-border rounded-2xl p-6">
+                <Card className="lg:col-span-8 liquid-glass rounded-2xl p-6">
                   <div className="mb-4">
                     <h3 className="text-base font-black text-foreground">GPA Progression</h3>
                     <p className="text-xs text-muted-foreground">Visualizing your semester-wise growth</p>
@@ -2406,7 +2445,7 @@ export default function DashboardPage() {
                   </div>
                 </Card>
 
-                <Card className="lg:col-span-4 bg-card border border-border rounded-2xl p-6">
+                <Card className="lg:col-span-4 liquid-glass rounded-2xl p-6">
                   <div className="mb-4">
                     <h3 className="text-base font-black text-foreground">Subject Mastery</h3>
                     <p className="text-xs text-muted-foreground">Average performance by field</p>

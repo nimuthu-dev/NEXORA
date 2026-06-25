@@ -81,9 +81,17 @@ export default function OnboardingPage() {
         router.push('/dashboard')
       } else {
         setStep('initialize')
+        if (user.displayName && !fullName) {
+          setFullName(user.displayName)
+        } else if (!fullName) {
+          try {
+            const savedName = localStorage.getItem('nexora-name')
+            if (savedName) setFullName(savedName)
+          } catch (e) {}
+        }
       }
     }
-  }, [user, authLoading, router])
+  }, [user, authLoading, router, fullName])
 
   const setupRecaptcha = () => {
     if (!recaptchaRef.current) return
@@ -216,7 +224,7 @@ export default function OnboardingPage() {
   }
 
   const handleInitialize = async () => {
-    if (degree && year && semester) {
+    if (degree && year && semester && fullName.trim()) {
       setIsInitializing(true)
       const statuses = [
         "Connecting Neural Core...",
@@ -233,6 +241,7 @@ export default function OnboardingPage() {
       localStorage.setItem('nexora-degree', degree)
       localStorage.setItem('nexora-year', year)
       localStorage.setItem('nexora-semester', semester)
+      localStorage.setItem('nexora-name', fullName.trim())
       localStorage.setItem('nexora-onboarded', 'true')
       window.dispatchEvent(new Event('profile-change'))
       router.push('/dashboard')
@@ -396,6 +405,20 @@ export default function OnboardingPage() {
 
                     <div className="space-y-6">
                       <div className="space-y-2">
+                        <label className="text-[9px] font-black uppercase tracking-[0.25em] text-slate-800 dark:text-muted-foreground/75 px-1">Your Full Name</label>
+                        <div className="relative group">
+                          <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-muted-foreground/50 group-focus-within:text-[#00C2FF] transition-colors" />
+                          <Input 
+                            value={fullName} 
+                            onChange={(e) => setFullName(e.target.value)} 
+                            placeholder="Enter full name" 
+                            className="bg-foreground/5 border-foreground/10 rounded-2xl h-12 pl-12 text-xs focus:ring-blue-500/50 transition-all text-foreground placeholder:text-slate-600/80 dark:placeholder:text-muted-foreground/40" 
+                            required 
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
                         <label className="text-[9px] font-black uppercase tracking-[0.25em] text-slate-800 dark:text-muted-foreground/75 px-1">Degree Program</label>
                         <Select value={degree} onValueChange={setDegree}>
                           <SelectTrigger className="h-12 bg-foreground/5 border-foreground/10 rounded-2xl text-xs font-black transition-all hover:bg-foreground/10 text-foreground">
@@ -442,7 +465,7 @@ export default function OnboardingPage() {
 
                     <Button 
                       onClick={handleInitialize} 
-                      disabled={!degree || !year || !semester || isInitializing} 
+                      disabled={!degree || !year || !semester || !fullName.trim() || isInitializing} 
                       className="h-14 rounded-full bg-foreground text-background hover:bg-foreground/90 text-xs font-black tracking-widest transition-all active:scale-95 shadow-xl flex items-center justify-center gap-3 border-none mt-2"
                     >
                       INITIALIZE WORKSPACE <ArrowRight className="w-4 h-4" />
