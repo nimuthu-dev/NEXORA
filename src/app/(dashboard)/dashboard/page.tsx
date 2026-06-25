@@ -1543,23 +1543,23 @@ export default function DashboardPage() {
             <div className="flex flex-col gap-5">
 
               {/* Module Selector */}
-              <div className="bg-card border border-border rounded-2xl p-4 flex flex-col gap-3">
+              <div className="bg-card border border-transparent rounded-2xl p-4 flex flex-col gap-3 shadow-sm">
                 <div className="flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">
                       {activeModule ? "Active Module" : "Choose a Module"}
                     </span>
-                    <span className="text-[9px] font-bold px-2 py-0.5 bg-primary/10 text-primary border border-primary/20 rounded-md uppercase">{selectedYear}</span>
+                    <span className="text-[9px] font-bold px-2 py-0.5 bg-primary/10 text-primary border border-transparent rounded-md uppercase">{selectedYear}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <select value={selectedYear} onChange={e => { setSelectedYear(e.target.value); setActiveModule(null); setActivePdf(null); }}
-                      className="h-8 rounded-lg px-2.5 bg-muted border border-border text-foreground text-xs outline-none cursor-pointer">
+                      className="h-8 rounded-lg px-2.5 bg-muted border border-transparent text-foreground text-xs outline-none cursor-pointer">
                       <option value="Y1S1">Year 1 · Sem 1</option>
                       <option value="Y1S2">Year 1 · Sem 2 (Locked)</option>
                       <option value="Y2S1">Year 2 · Sem 1 (Locked)</option>
                     </select>
                     {(activeModule || activePdf) && (
-                      <Button onClick={() => { setActiveModule(null); setActivePdf(null); }} size="sm" variant="outline" className="h-8 px-3 rounded-lg text-xs border-border hover:bg-muted text-foreground">
+                      <Button onClick={() => { setActiveModule(null); setActivePdf(null); }} size="sm" variant="outline" className="h-8 px-3 rounded-lg text-xs border-transparent bg-muted/40 hover:bg-muted text-foreground">
                         ← Reselect
                       </Button>
                     )}
@@ -1570,18 +1570,35 @@ export default function DashboardPage() {
                     const sel = activeModule === mod.name;
                     return (
                       <button key={mod.code} onClick={() => { setActiveModule(mod.name); setActivePdf(null); setStudyMode("lec"); }}
-                        className={cn("flex items-center gap-2 sm:gap-3.5 p-2.5 sm:p-4 rounded-lg sm:rounded-xl border cursor-pointer text-left transition-all w-full",
-                          sel ? "bg-primary/10 border-primary/50 shadow-md ring-1 ring-primary/20" : "bg-card border-border hover:border-primary/30 hover:bg-muted/50"
+                        className={cn(
+                          "flex items-center gap-2 sm:gap-3.5 p-2.5 sm:p-4 rounded-lg sm:rounded-xl cursor-pointer text-left transition-all w-full relative overflow-hidden shadow-sm hover:shadow border border-transparent",
+                          sel 
+                            ? `bg-gradient-to-tr ${mod.color} text-white scale-[1.02]`
+                            : "bg-card hover:bg-muted/40 text-foreground"
                         )}
                       >
-                        <div className={cn("w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-tr flex items-center justify-center text-white shrink-0 shadow-sm", mod.color)}>
+                        {!sel && (
+                          <div className={cn("absolute inset-0 opacity-[0.03] dark:opacity-[0.06] bg-gradient-to-tr", mod.color)} />
+                        )}
+                        <div className={cn(
+                          "w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-all",
+                          sel 
+                            ? "bg-white/20 text-white"
+                            : cn("bg-gradient-to-tr text-white", mod.color)
+                        )}>
                           <ModuleIcon name={mod.iconName} cls="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                         </div>
                         <div className="flex flex-col flex-1 min-w-0 leading-tight">
-                          <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider text-muted-foreground">{mod.code}</span>
-                          <span className={cn("text-[10px] sm:text-xs font-bold mt-0.5 sm:mt-1 truncate", sel ? "text-primary font-black" : "text-foreground")}>{mod.name}</span>
+                          <span className={cn(
+                            "text-[8px] sm:text-[9px] font-black uppercase tracking-wider transition-colors",
+                            sel ? "text-white/80" : "text-muted-foreground"
+                          )}>{mod.code}</span>
+                          <span className={cn(
+                            "text-[10px] sm:text-xs font-bold mt-0.5 sm:mt-1 truncate transition-colors",
+                            sel ? "text-white" : "text-foreground"
+                          )}>{mod.name}</span>
                         </div>
-                        {sel && <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shrink-0 ml-1" />}
+                        {sel && <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse shrink-0 ml-1" />}
                       </button>
                     );
                   })}
@@ -1589,13 +1606,13 @@ export default function DashboardPage() {
               </div>
 
               {selectedYear !== "Y1S1" ? (
-                <div className="flex flex-col items-center justify-center p-16 bg-card border border-border rounded-2xl text-center min-h-[280px]">
+                <div className="flex flex-col items-center justify-center p-16 bg-card border border-transparent rounded-2xl text-center min-h-[280px] shadow-sm">
                   <Library className="w-10 h-10 text-muted-foreground/20 mb-3" />
                   <h3 className="font-bold text-sm text-foreground">No resources for {selectedYear}</h3>
                   <p className="text-xs text-muted-foreground mt-1">Switch back to Year 1 Sem 1 to access modules.</p>
                 </div>
               ) : !activeModule ? (
-                <div className="flex flex-col items-center justify-center p-16 bg-card border border-dashed border-border rounded-2xl text-center min-h-[280px]">
+                <div className="flex flex-col items-center justify-center p-16 bg-card border border-dashed border-border/50 rounded-2xl text-center min-h-[280px] shadow-sm">
                   <Library className="w-12 h-12 text-primary/20 mb-4" />
                   <h3 className="font-black text-xl text-foreground">Select a Module Above</h3>
                   <p className="text-xs text-muted-foreground mt-2 max-w-sm">Choose a module to access lecture slides, tutorial sheets, and interactive AI Study Decks.</p>
@@ -1603,7 +1620,7 @@ export default function DashboardPage() {
               ) : activeModule && !activePdf && activeFocusModule ? (
                 <div className="flex flex-col gap-5">
                   {/* Active module hero — BIG display */}
-                  <div className="flex items-center gap-5 p-6 bg-card border border-border rounded-2xl relative overflow-hidden">
+                  <div className="flex items-center gap-5 p-6 bg-card border border-transparent rounded-2xl relative overflow-hidden shadow-sm">
                     <div className="absolute inset-0 opacity-[0.04] bg-gradient-to-br from-primary to-indigo-600 pointer-events-none" />
                     <div className={cn("w-16 h-16 rounded-2xl bg-gradient-to-br flex items-center justify-center text-white shadow-lg shrink-0", activeFocusModule.color)}>
                       <ModuleIcon name={activeFocusModule.iconName} cls="w-7 h-7" />
@@ -1616,7 +1633,7 @@ export default function DashboardPage() {
                   </div>
 
                   {/* Lec / Tut / Rev toggle */}
-                  <div className={cn("grid gap-2 bg-muted p-1.5 rounded-xl border border-border", 
+                  <div className={cn("grid gap-2 bg-muted/80 p-1.5 rounded-xl border border-transparent", 
                     activeFocusModule.resources.rev ? "grid-cols-3" : "grid-cols-2"
                   )}>
                     {([["lec", "📖 Lectures"], ["tut", "✏️ Tutorials"]] as const).map(([mode, label]) => (
@@ -1665,7 +1682,7 @@ export default function DashboardPage() {
                       return (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-1">
                           {sortedWeekKeys.map((weekName) => (
-                            <div key={weekName} className="flex flex-col gap-3 p-4 bg-muted/20 border border-border/40 rounded-2xl h-fit">
+                            <div key={weekName} className="flex flex-col gap-3 p-4 bg-muted/30 dark:bg-muted/15 border border-transparent rounded-2xl h-fit shadow-sm">
                               <div className="flex items-center gap-3">
                                 <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#00C2FF] px-1 shrink-0">
                                   {weekName}
@@ -1675,10 +1692,10 @@ export default function DashboardPage() {
                               <div className="flex flex-col gap-2.5">
                                 {groupedByWeek[weekName].map((res, idx) => (
                                   <div key={idx} onClick={() => { setActivePdf(res.name); setPdfSubTab("qa"); setPdfMessages([{ sender: 'ai', text: `Study Deck loaded for "${res.name}". Ask me anything, or take the mock quiz!`, time: "Just now" }]); setUserQuizAnswers({}); setQuizSubmitted(false); }}
-                                    className="flex items-center justify-between p-3 bg-card border border-border rounded-xl group hover:border-primary/40 hover:bg-muted/40 transition-all cursor-pointer"
+                                    className="flex items-center justify-between p-3 bg-card/65 border border-transparent hover:border-primary/20 rounded-xl group hover:bg-muted/50 transition-all cursor-pointer shadow-sm hover:shadow"
                                   >
                                     <div className="flex items-center gap-3 min-w-0">
-                                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                                      <div className="w-8 h-8 rounded-lg bg-primary/10 border border-transparent flex items-center justify-center text-primary shrink-0">
                                         <FileText className="w-3.5 h-3.5" />
                                       </div>
                                       <div className="min-w-0">
@@ -1688,7 +1705,7 @@ export default function DashboardPage() {
                                     </div>
                                     <div className="flex items-center gap-1.5 shrink-0 ml-2">
                                       <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('pdf'); }}
-                                        className="text-[8px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2 py-1 transition-colors">
+                                        className="text-[8px] font-bold uppercase border border-transparent bg-muted/40 hover:border-primary/20 hover:bg-primary/10 text-muted-foreground hover:text-primary rounded-lg px-2 py-1 transition-colors">
                                         {res.name.endsWith(".pdf") ? "View PDF" : res.name.endsWith(".pptx") ? "View Slides" : "View Doc"}
                                       </button>
                                       <button onClick={e => { e.stopPropagation(); setViewingPdf(res.name); setPdfViewMode('notes'); }}
@@ -1709,14 +1726,14 @@ export default function DashboardPage() {
               ) : activeModule && activePdf && activeFocusModule ? (
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
                   {/* Left: file info + timer */}
-                  <Card className="lg:col-span-7 bg-card border border-border rounded-2xl p-6 flex flex-col gap-5">
+                  <Card className="lg:col-span-7 bg-card border border-transparent rounded-2xl p-6 flex flex-col gap-5 shadow-sm">
                     <div className="flex items-center justify-between">
                       <button onClick={() => setActivePdf(null)} className="text-xs font-bold text-primary hover:text-foreground transition-colors flex items-center gap-1">
                         ← Back to Files
                       </button>
                       <div className="flex items-center gap-2">
                         <button onClick={() => { setViewingPdf(activePdf); setPdfViewMode('pdf'); }}
-                          className="text-[9px] font-bold uppercase border border-border hover:border-primary/40 hover:bg-primary/10 text-muted-foreground hover:text-primary px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all">
+                          className="text-[9px] font-bold uppercase border border-transparent bg-muted/40 hover:border-primary/20 hover:bg-primary/10 text-muted-foreground hover:text-primary px-3 py-1.5 rounded-lg flex items-center gap-1.5 transition-all">
                           {activePdf.endsWith(".pdf") ? "View PDF" : activePdf.endsWith(".pptx") ? "View Slides" : "View Doc"} <ExternalLink className="w-3 h-3" />
                         </button>
                         <button onClick={() => { setViewingPdf(activePdf); setPdfViewMode('notes'); }}
@@ -1726,7 +1743,7 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 border border-transparent flex items-center justify-center text-primary shrink-0">
                         <FileText className="w-6 h-6" />
                       </div>
                       <div>
@@ -1734,19 +1751,19 @@ export default function DashboardPage() {
                         <h3 className="text-base font-black text-foreground leading-tight">{activePdf}</h3>
                       </div>
                     </div>
-                    <div className="bg-muted p-4 rounded-xl border border-border">
+                    <div className="bg-muted p-4 rounded-xl border border-transparent">
                       <p className="text-[9px] font-black text-muted-foreground uppercase tracking-widest mb-1.5">Context Summary</p>
                       <p className="text-xs text-foreground/70 italic leading-relaxed">"{mockPdfStudyData[activePdf]?.summary || defaultPdfStudyData.summary}"</p>
                     </div>
                     {/* Pomodoro */}
-                    <div className="flex flex-col items-center bg-background border border-border p-5 rounded-xl gap-3">
+                    <div className="flex flex-col items-center bg-background border border-transparent p-5 rounded-xl gap-3 shadow-inner">
                       <span className="text-[9px] font-black uppercase tracking-widest text-muted-foreground">Pomodoro Focus Timer</span>
                       <span className="text-5xl font-mono font-black text-primary tracking-widest">{formatTimer(timerSeconds)}</span>
                       <div className="flex gap-2">
                         <Button onClick={() => setTimerIsActive(!timerIsActive)} className={cn("px-6 h-9 rounded-xl flex items-center gap-2 font-bold text-xs uppercase shadow-sm", timerIsActive ? "bg-red-500 hover:bg-red-600" : "bg-emerald-500 hover:bg-emerald-600")}>
                           {timerIsActive ? <><Pause className="w-3.5 h-3.5" />Pause</> : <><Play className="w-3.5 h-3.5 fill-white" />Start Focus</>}
                         </Button>
-                        <Button onClick={() => { setTimerIsActive(false); setTimerSeconds(25 * 60); }} variant="outline" size="icon" className="w-9 h-9 rounded-xl border-border text-muted-foreground hover:text-foreground">
+                        <Button onClick={() => { setTimerIsActive(false); setTimerSeconds(25 * 60); }} variant="outline" size="icon" className="w-9 h-9 rounded-xl border-transparent bg-muted/40 text-muted-foreground hover:text-foreground">
                           <RotateCcw className="w-3.5 h-3.5" />
                         </Button>
                       </div>
@@ -1758,21 +1775,21 @@ export default function DashboardPage() {
                     <div className="grid grid-cols-2 gap-1.5 bg-muted p-1 rounded-xl">
                       {([["qa", "Ask AI (Q&A)"], ["quiz", "Mock Quiz"]] as const).map(([tab, label]) => (
                         <button key={tab} onClick={() => setPdfSubTab(tab)}
-                          className={cn("py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all", pdfSubTab === tab ? "bg-card text-foreground shadow-sm border border-border" : "text-muted-foreground hover:text-foreground")}
+                          className={cn("py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all", pdfSubTab === tab ? "bg-card text-foreground shadow-sm border border-transparent" : "text-muted-foreground hover:text-foreground")}
                         >{label}</button>
                       ))}
                     </div>
 
                     {pdfSubTab === "qa" && (
-                      <div className="bg-card border border-border rounded-xl p-4 flex flex-col gap-3 flex-1 min-h-[300px]">
+                      <div className="bg-card border border-transparent rounded-xl p-4 flex flex-col gap-3 flex-1 min-h-[300px] shadow-sm">
                         <div className="flex-1 flex flex-col gap-2 overflow-y-auto max-h-[220px] pr-1">
                           {pdfMessages.map((msg, i) => (
-                            <div key={i} className={cn("max-w-[90%] p-3 rounded-xl text-[11px] leading-relaxed", msg.sender === 'user' ? "bg-primary text-white self-end rounded-tr-none" : "bg-muted text-foreground border border-border self-start rounded-tl-none")}>
+                            <div key={i} className={cn("max-w-[90%] p-3 rounded-xl text-[11px] leading-relaxed", msg.sender === 'user' ? "bg-primary text-white self-end rounded-tr-none" : "bg-muted text-foreground border border-transparent self-start rounded-tl-none shadow-sm")}>
                               {msg.text}
                             </div>
                           ))}
                         </div>
-                        <form onSubmit={handleSendPdfMessage} className="flex gap-2 bg-muted p-1.5 rounded-lg border border-border">
+                        <form onSubmit={handleSendPdfMessage} className="flex gap-2 bg-muted p-1.5 rounded-lg border border-transparent">
                           <Input value={pdfInput} onChange={e => setPdfInput(e.target.value)} placeholder="Ask about this PDF..." className="bg-transparent border-none text-[11px] h-8 focus-visible:ring-0 flex-1 px-2 text-foreground placeholder:text-muted-foreground" />
                           <Button type="submit" size="icon" className="w-8 h-8 rounded-lg bg-primary text-white shrink-0"><Send className="w-3.5 h-3.5" /></Button>
                         </form>
@@ -1780,7 +1797,7 @@ export default function DashboardPage() {
                     )}
 
                     {pdfSubTab === "quiz" && (
-                      <div className="bg-card border border-border rounded-xl p-4 flex flex-col gap-4 max-h-[380px] overflow-y-auto">
+                      <div className="bg-card border border-transparent rounded-xl p-4 flex flex-col gap-4 max-h-[380px] overflow-y-auto shadow-sm">
                         {!quizSubmitted ? (
                           <div className="flex flex-col gap-4 text-xs">
                             {(mockPdfStudyData[activePdf]?.quiz || defaultPdfStudyData.quiz).map((q, qi) => (
@@ -1789,7 +1806,7 @@ export default function DashboardPage() {
                                 <div className="flex flex-col gap-1.5">
                                   {q.options.map((opt, oi) => (
                                     <button key={oi} onClick={() => handleSelectQuizOption(qi, oi)}
-                                      className={cn("text-left p-2.5 rounded-lg border text-[11px] font-medium transition-all", userQuizAnswers[qi] === oi ? "bg-primary/15 border-primary text-foreground" : "bg-muted border-border text-muted-foreground hover:text-foreground hover:border-primary/30")}
+                                      className={cn("text-left p-2.5 rounded-lg border text-[11px] font-medium transition-all", userQuizAnswers[qi] === oi ? "bg-primary/15 border-primary text-foreground" : "bg-muted border-transparent text-muted-foreground hover:text-foreground hover:border-primary/30")}
                                     >{opt}</button>
                                   ))}
                                 </div>
@@ -1802,7 +1819,7 @@ export default function DashboardPage() {
                           </div>
                         ) : (
                           <div className="flex flex-col gap-4 text-xs">
-                            <div className="bg-emerald-500/10 border border-emerald-500/20 p-4 rounded-xl flex items-center justify-between">
+                            <div className="bg-emerald-500/10 border border-transparent p-4 rounded-xl flex items-center justify-between shadow-sm">
                               <div>
                                 <span className="text-[9px] font-black uppercase text-muted-foreground block">Score</span>
                                 <span className="text-xl font-black text-emerald-500">{quizScore} / {(mockPdfStudyData[activePdf]?.quiz || defaultPdfStudyData.quiz).length}</span>
@@ -1812,7 +1829,7 @@ export default function DashboardPage() {
                               </span>
                             </div>
                             {(mockPdfStudyData[activePdf]?.quiz || defaultPdfStudyData.quiz).map((q, qi) => (
-                              <div key={qi} className="bg-muted border border-border p-3 rounded-xl flex flex-col gap-1.5">
+                              <div key={qi} className="bg-muted border border-transparent p-3 rounded-xl flex flex-col gap-1.5 shadow-sm">
                                 <div className="flex items-start gap-2">
                                   <span className={userQuizAnswers[qi] === q.answer ? "text-emerald-500 font-bold" : "text-red-500 font-bold"}>{userQuizAnswers[qi] === q.answer ? "✓" : "✗"}</span>
                                   <p className="font-bold text-foreground text-[11px]">{qi + 1}. {q.question}</p>
@@ -1820,7 +1837,7 @@ export default function DashboardPage() {
                                 <p className="text-[10px] text-muted-foreground pl-4"><strong className="text-foreground">Explanation:</strong> {q.explanation}</p>
                               </div>
                             ))}
-                            <Button onClick={() => { setUserQuizAnswers({}); setQuizSubmitted(false); }} variant="outline" className="w-full border-border text-foreground text-[10px] font-black uppercase tracking-wider py-2.5 rounded-lg hover:bg-muted">
+                            <Button onClick={() => { setUserQuizAnswers({}); setQuizSubmitted(false); }} variant="outline" className="w-full border-transparent bg-muted/40 text-foreground text-[10px] font-black uppercase tracking-wider py-2.5 rounded-lg hover:bg-muted">
                               Retake Quiz
                             </Button>
                           </div>
